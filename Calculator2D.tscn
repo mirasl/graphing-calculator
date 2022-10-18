@@ -7,6 +7,6 @@
 script = ExtResource( 1 )
 
 [node name="Line2D" type="Line2D" parent="."]
-position = Vector2( 50, 500 )
+position = Vector2( 950, 600 )
 width = 2.0
 script = ExtResource( 2 )
