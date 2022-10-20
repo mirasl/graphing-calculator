@@ -18,7 +18,7 @@ public class Calculator2D : Node2D
         for (int i = -50; i < 50; i++)
         {
             Line2D line = pLine.Instance<Line2D>();
-            GetNode<Node2D>("Lines").AddChild(line);
+            AddChild(line);
 
             for (int xInt = i * 1000; xInt <= (i+1) * 1000; xInt++)
             {
@@ -33,7 +33,7 @@ public class Calculator2D : Node2D
                 {
                     inRange = true;
                     line = pLine.Instance<Line2D>();
-                    GetNode<Node2D>("Lines").AddChild(line);
+                    AddChild(line);
                 }
 
                 if (inRange)
