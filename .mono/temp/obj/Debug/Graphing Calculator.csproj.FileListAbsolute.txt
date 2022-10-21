@@ -1,9 +1,0 @@
-/home/mira/Documents/godot/graphing_calculator/.mono/temp/bin/Debug/Graphing Calculator.dll
-/home/mira/Documents/godot/graphing_calculator/.mono/temp/bin/Debug/Graphing Calculator.pdb
-/home/mira/Documents/godot/graphing_calculator/.mono/temp/obj/Debug/Graphing Calculator.csproj.AssemblyReference.cache
-/home/mira/Documents/godot/graphing_calculator/.mono/temp/obj/Debug/Graphing Calculator.GeneratedMSBuildEditorConfig.editorconfig
-/home/mira/Documents/godot/graphing_calculator/.mono/temp/obj/Debug/Graphing Calculator.AssemblyInfoInputs.cache
-/home/mira/Documents/godot/graphing_calculator/.mono/temp/obj/Debug/Graphing Calculator.AssemblyInfo.cs
-/home/mira/Documents/godot/graphing_calculator/.mono/temp/obj/Debug/Graphing Calculator.csproj.CoreCompileInputs.cache
-/home/mira/Documents/godot/graphing_calculator/.mono/temp/obj/Debug/Graphing Calculator.dll
-/home/mira/Documents/godot/graphing_calculator/.mono/temp/obj/Debug/Graphing Calculator.pdb
