@@ -3,7 +3,9 @@ using System;
 
 public class CameraControls : Camera2D
 {
-    private const int SPEED = 10;
+    private const int SPEED = 1;
+
+    [Signal] delegate void ChangeZoom(Vector2 newZoom);
 
     public override void _Process(float delta)
     {
@@ -23,6 +25,21 @@ public class CameraControls : Camera2D
         else if (Input.IsActionPressed("ui_down"))
         {
             Position = new Vector2(Position.x, Position.y + SPEED);
+        }
+
+        if (Input.IsActionPressed("ctrl"))
+        {
+            if (Input.IsActionJustPressed("equal"))
+            {
+                Zoom = new Vector2(Zoom.x * 0.8f, Zoom.y * 0.8f);
+                EmitSignal("ChangeZoom", Zoom);
+            }
+
+            if (Input.IsActionJustPressed("minus"))
+            {
+                Zoom = new Vector2(Zoom.x * 1.2f, Zoom.y * 1.2f);
+                EmitSignal("ChangeZoom", Zoom);
+            }
         }
     }
 }

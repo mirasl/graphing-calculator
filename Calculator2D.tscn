@@ -20,6 +20,17 @@ points = PoolVector2Array( 0, -10000, 0, 10000 )
 width = 0.2
 default_color = Color( 0.298039, 0.886275, 0, 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Lines"]
+position = Vector2( -19.3333, -21.6 )
+scale = Vector2( 0.0666667, 0.0666667 )
 current = true
 script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_right = 1925.0
+margin_bottom = 1095.0
+
+[connection signal="ChangeZoom" from="Lines/Camera2D" to="Lines" method="sig_ChangeZoom"]
