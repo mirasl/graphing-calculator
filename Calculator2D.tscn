@@ -32,5 +32,3 @@ layer = -1
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 margin_right = 1925.0
 margin_bottom = 1095.0
-
-[connection signal="ChangeZoom" from="Lines/Camera2D" to="Lines" method="sig_ChangeZoom"]
