@@ -19,7 +19,7 @@ public class Calculator2D : Node2D
 	{
 		pLine = GD.Load<PackedScene>("res://Line2D.tscn");
 
-		e = interpret("x^(2-1)");
+		e = interpret("x^(2-1)+1*10/5");
 		
 		Graph();
 		
@@ -150,7 +150,7 @@ public class Calculator2D : Node2D
 				flatElements.Add(new Variable("variable"));
 			} else if (s.Equals("(")) {
 				flatElements.Add(new Paren("open"));
-			} else if (s.Equals("(")) {
+			} else if (s.Equals(")")) {
 				flatElements.Add(new Paren("close"));
 			}
 		}
@@ -217,9 +217,10 @@ public class Calculator2D : Node2D
 							}
 						}
 					}
-					Element g = Pemdas(input.GetRange(i+1, j-(i+1)));
+					Element g = Pemdas(input.GetRange(i+1, j-i-2));
 					input.RemoveRange(i, j-i);
 					input.Insert(i, g);
+					i--;
 				}
 			}
 		}
