@@ -144,7 +144,7 @@ public class Calculator2D : Node2D
 				flatElements.Add(new Variable("variable"));
 			} else if (s.Equals("(")) {
 				flatElements.Add(new Paren("open"));
-			} else if (s.Equals("(")) {
+			} else if (s.Equals(")")) {
 				flatElements.Add(new Paren("close"));
 			}
 		}
@@ -211,9 +211,9 @@ public class Calculator2D : Node2D
 							}
 						}
 					}
-					Element g = Pemdas(input.GetRange(i+1, j-(i+1)));
-					input.RemoveRange(i, j-i);
-					input.Insert(i, g);
+					Element g = Pemdas(input.GetRange(i+1, j-i-2));
+					castE.setX(g);
+					input.RemoveRange(i+1, j-i-1);
 				}
 			}
 		}
@@ -290,9 +290,7 @@ public class Variable : Element {
 	}
 }
 
-public class Paren : Element {
-	public Element a;
-	
+public class Paren : Operator {
 	public Paren(String typeIn) : base(typeIn) {
 	}
 	
