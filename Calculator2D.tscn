@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Calculator2D.cs" type="Script" id=1]
 [ext_resource path="res://CameraControls.cs" type="Script" id=2]
+[ext_resource path="res://TextInput.cs" type="Script" id=3]
+[ext_resource path="res://GraphingCalculator.cs" type="Script" id=4]
 
 [node name="Calculator2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="CanvasLayerBack" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayerBack"]
+margin_right = 1925.0
+margin_bottom = 1095.0
 
 [node name="Lines" type="Node2D" parent="."]
 position = Vector2( 800, 500 )
@@ -26,9 +36,11 @@ scale = Vector2( 0.0666667, 0.0666667 )
 current = true
 script = ExtResource( 2 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
+[node name="CanvasLayerFront" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-margin_right = 1925.0
-margin_bottom = 1095.0
+[node name="LineEdit" type="LineEdit" parent="CanvasLayerFront"]
+margin_right = 58.0
+margin_bottom = 24.0
+script = ExtResource( 3 )
+
+[connection signal="InputGraph" from="CanvasLayerFront/LineEdit" to="." method="sig_InputGraph"]

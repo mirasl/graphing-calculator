@@ -12,21 +12,20 @@ public class Calculator2D : Node2D
 
 	private PackedScene pLine;
 	
-	Element e;
+	public Element e; // KEEP this change (necessary for text input)
 
 
 	public override void _Ready()
 	{
 		pLine = GD.Load<PackedScene>("res://Line2D.tscn");
 
-		e = interpret("x^(2-1)");
+		// e = interpret("x^(2-1)");
 		
-		Graph();
-		
+		// Graph(e);
 	}
 
 	// Sets the line to reflect a graph of the function:
-	public void Graph()
+	public void Graph(Element function)
 	{
 		bool inRange = true;
 
@@ -56,32 +55,32 @@ public class Calculator2D : Node2D
 				//         line.AddPoint(new Vector2(x - 0.005f, -100000000));
 				//     }
 				// }
-				if ((f(x) > 150 + Screen.Position.y || f(x) < -150 + Screen.Position.y) && inRange) // outside range
+				if ((-function.run(x) > 150 + Screen.Position.y || -function.run(x) < -150 + Screen.Position.y) && inRange) // outside range
 				{
 					inRange = false;
-					if (f(x) > 150 + Screen.Position.y) // too high
+					if (-function.run(x) > 150 + Screen.Position.y) // too high
 					{
 						inRange = false;
 						line.AddPoint(new Vector2(x, 10000000));
 					}
-					else if (f(x) < -150 + Screen.Position.y) // too low
+					else if (-function.run(x) < -150 + Screen.Position.y) // too low
 					{
 						inRange = false;
 						line.AddPoint(new Vector2(x, -10000000));
 					}
 				}
 
-				if ((f(x) <= 150 + Screen.Position.y && f(x) >= -150 + Screen.Position.y) && !inRange)
+				if ((-function.run(x) <= 150 + Screen.Position.y && -function.run(x) >= -150 + Screen.Position.y) && !inRange)
 				{
 					inRange = true;
 					line = pLine.Instance<Line2D>();
 					AddChild(line);
 
-					if (TakeDerivative(x) > 0) // slope is positive
+					if (TakeDerivative(x, function) > 0) // slope is positive
 					{
 						line.AddPoint(new Vector2(x, 10000000));
 					}
-					else if (TakeDerivative(x) < 0) // slope is negative
+					else if (TakeDerivative(x, function) < 0) // slope is negative
 					{
 						line.AddPoint(new Vector2(x, -10000000));
 					}
@@ -92,15 +91,15 @@ public class Calculator2D : Node2D
 
 				if (inRange)
 				{
-					line.AddPoint(new Vector2(x, f(x)));
+					line.AddPoint(new Vector2(x, -function.run(x)));
 				}
 			}
 		}
 	}
 
-	public float TakeDerivative(float x)
+	public float TakeDerivative(float x, Element function)
 	{
-		float rise = f(x) - f(x + 0.00001f);
+		float rise = -function.run(x) + function.run(x + 0.00001f);
 		float run = 0.00001f;
 		return rise / run;
 	}
@@ -113,21 +112,16 @@ public class Calculator2D : Node2D
 				GetViewportRect().Size / Scale);
 	}
 
-	public override void _PhysicsProcess(float delta)
-	{
-		///
-		if (Input.IsActionJustPressed("ui_accept"))
-		{
-			RefreshScreen();
-			Graph();
-			//GD.Print(Screen);
-		}
-	}
-	
-	public float f(float x) // x^2
-	{
-		return -e.run(x);
-	}
+	// public override void _PhysicsProcess(float delta)
+	// {
+	// 	///
+	// 	if (Input.IsActionJustPressed("ui_accept"))
+	// 	{
+	// 		RefreshScreen();
+	// 		Graph(e);
+	// 		//GD.Print(Screen);
+	// 	}
+	// }
 	
 	public Element interpret(String input) {
 		List<String> strList = seperate(input);
