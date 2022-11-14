@@ -112,6 +112,18 @@ public class Calculator2D : Node2D
 				GetViewportRect().Size / Scale);
 	}
 
+	public void sig_ChangeZoom(Vector2 zoom)
+	{
+		foreach (Node child in GetChildren())
+		{
+			if (child is Line2D)
+			{
+				Line2D lineChild = (Line2D)child;
+				lineChild.Width = 0.2f * zoom.x;
+			}
+		}
+	}
+
 	// public override void _PhysicsProcess(float delta)
 	// {
 	// 	///
