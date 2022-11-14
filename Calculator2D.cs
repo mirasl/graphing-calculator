@@ -95,6 +95,8 @@ public class Calculator2D : Node2D
 				}
 			}
 		}
+
+		RefreshScreen();
 	}
 
 	public float TakeDerivative(float x, Element function)
@@ -110,6 +112,7 @@ public class Calculator2D : Node2D
 		Camera2D camera = GetNode<Camera2D>("Camera2D");
 		Screen = new Rect2(camera.Position, camera.Zoom * 
 				GetViewportRect().Size / Scale);
+		sig_ChangeZoom(camera.Zoom);
 	}
 
 	public void sig_ChangeZoom(Vector2 zoom)

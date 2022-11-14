@@ -32,6 +32,12 @@ points = PoolVector2Array( -10000, 0, 10000, 0 )
 width = 0.2
 default_color = Color( 1, 0, 0, 1 )
 
+[node name="X1" type="Line2D" parent="Lines"]
+position = Vector2( 0, 1 )
+points = PoolVector2Array( -10000, 0, 10000, 0 )
+width = 0.1
+default_color = Color( 0.519531, 0.450531, 0.450531, 1 )
+
 [node name="Yaxis" type="Line2D" parent="Lines"]
 points = PoolVector2Array( 0, -10000, 0, 10000 )
 width = 0.2
