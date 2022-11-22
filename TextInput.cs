@@ -7,7 +7,7 @@ public class TextInput : LineEdit
 
     public override void _PhysicsProcess(float delta)
     {
-        if (Input.IsActionJustPressed("ui_accept"))
+        if (Input.IsActionJustPressed("enter"))
         {
             string input = this.Text;
             EmitSignal("InputGraph", input);

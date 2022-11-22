@@ -33,6 +33,7 @@ width = 0.2
 default_color = Color( 1, 0, 0, 1 )
 
 [node name="X1" type="Line2D" parent="Lines"]
+visible = false
 position = Vector2( 0, 1 )
 points = PoolVector2Array( -10000, 0, 10000, 0 )
 width = 0.1
