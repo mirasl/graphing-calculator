@@ -20,9 +20,6 @@ public class CameraPivot : Spatial
 
     private void Orbit()
     {
-        GD.Print(Rotation.x);
-        RayCast rc = GetNode<RayCast>("RayCast");
-        rc.CastTo = Vector3.Left;
         if (Input.IsActionPressed("ui_left"))
         {
             Transform = Transform.Rotated(Vector3.Up, -ROTATION_SPEED);
