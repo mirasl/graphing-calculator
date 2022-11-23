@@ -27,19 +27,22 @@ public class CameraPivot : Spatial
     {
         if (Input.IsActionPressed("ui_left"))
         {
-            Transform = Transform.Rotated(Vector3.Up, -ROTATION_SPEED);
+            //Transform = Transform.Rotated(Vector3.Up, -ROTATION_SPEED);
+            RotateY(-ROTATION_SPEED);
         }
         if (Input.IsActionPressed("ui_right"))
         {
-            Transform = Transform.Rotated(Vector3.Up, ROTATION_SPEED);
+            RotateY(ROTATION_SPEED);
         }
         if (Input.IsActionPressed("ui_up") && Rotation.x > -Mathf.Pi/2 + 0.05f)
         {
-            Transform = Transform.Rotated(Vector3.Left.Rotated(Vector3.Up, Rotation.y), ROTATION_SPEED);
+            //Transform = Transform.Rotated(Vector3.Left.Rotated(Vector3.Up, Rotation.y), ROTATION_SPEED);
+            Rotate(Vector3.Left.Rotated(Vector3.Up, Rotation.y), ROTATION_SPEED);
         }
         if (Input.IsActionPressed("ui_down") && Rotation.x < Mathf.Pi/2 - 0.05f)
         {
-            Transform = Transform.Rotated(Vector3.Left.Rotated(Vector3.Up, Rotation.y), -ROTATION_SPEED);
+            //Transform = Transform.Rotated(Vector3.Left.Rotated(Vector3.Up, Rotation.y), -ROTATION_SPEED);
+            Rotate(Vector3.Left.Rotated(Vector3.Up, Rotation.y), -ROTATION_SPEED);
         }
     }
 
