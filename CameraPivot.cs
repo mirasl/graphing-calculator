@@ -7,11 +7,11 @@ public class CameraPivot : Spatial
 
     public override void _PhysicsProcess(float delta)
     {
-        if (Input.IsActionPressed("shift")) // orbit
+        if (Input.IsActionPressed("shift"))
         {
-            //Pan();
+            // Pan();
         }
-        else // pan
+        else
         {
             Orbit();
         }
