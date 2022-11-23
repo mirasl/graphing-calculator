@@ -4,7 +4,8 @@ using System;
 public class CameraPivot : Spatial
 {
     private const float ROTATION_SPEED = 0.04f; // radians per frame
-    private const float TRANSLATION_SPEED = 0.06f; // meters per frame
+    private const float TRANSLATION_SPEED = 0.07f; // meters per frame
+    private const float ZOOM_FACTOR = 0.8f; // multiplied by current zoom
 
     public override void _PhysicsProcess(float delta)
     {
@@ -15,6 +16,10 @@ public class CameraPivot : Spatial
         else
         {
             Orbit();
+        }
+        if (Input.IsActionPressed("ctrl"))
+        {
+            Zoom();
         }
     }
 
@@ -55,6 +60,24 @@ public class CameraPivot : Spatial
         if (Input.IsActionPressed("ui_down"))
         {
             Transform = Transform.Translated(Vector3.Down * TRANSLATION_SPEED);
+        }
+    }
+
+    private void Zoom()
+    {
+        if (Input.IsActionJustPressed("equal"))
+        {
+            Camera cam = GetNode<Camera>("Camera");
+            var transform = cam.Transform;
+            transform.origin.z = transform.origin.z * ZOOM_FACTOR;
+            cam.Transform = transform;
+        }
+        else if (Input.IsActionJustPressed("minus"))
+        {
+            Camera cam = GetNode<Camera>("Camera");
+            var transform = cam.Transform;
+            transform.origin.z = transform.origin.z * (1 / ZOOM_FACTOR);
+            cam.Transform = transform;
         }
     }
 }
