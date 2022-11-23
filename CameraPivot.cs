@@ -32,12 +32,11 @@ public class CameraPivot : Spatial
         }
         if (Input.IsActionPressed("ui_up") && Rotation.x > -Mathf.Pi/2 + 0.05f)
         {
-            // use Rotation.x to figure it out (the problem is that Vector3.Left changes when you pass +-90 degrees Rotation.x)
-            Transform = Transform.Rotated(Vector3.Left.Rotated(Vector3.Up, Rotation.y), ROTATION_SPEED);//(Mathf.Abs(Rotation.x) < Mathf.Pi/2 - 0.1f && Mathf.Abs(Rotation.z) < Mathf.Pi/2 - 0.1f) ? Rotation.y : 0), ROTATION_SPEED);
+            Transform = Transform.Rotated(Vector3.Left.Rotated(Vector3.Up, Rotation.y), ROTATION_SPEED);
         }
         if (Input.IsActionPressed("ui_down") && Rotation.x < Mathf.Pi/2 - 0.05f)
         {
-            Transform = Transform.Rotated(Vector3.Left.Rotated(Vector3.Up, Rotation.y), -ROTATION_SPEED);//(Mathf.Abs(Rotation.x) < Mathf.Pi/2 - 0.1f && Mathf.Abs(Rotation.z) < Mathf.Pi/2 - 0.1f) ? Rotation.y : 0), -ROTATION_SPEED);
+            Transform = Transform.Rotated(Vector3.Left.Rotated(Vector3.Up, Rotation.y), -ROTATION_SPEED);
         }
     }
     // private void Pan()
