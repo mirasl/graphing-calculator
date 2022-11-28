@@ -48,21 +48,36 @@ public class CameraPivot : Spatial
 
     private void Pan()
     {
-        if (Input.IsActionPressed("ui_left"))
+        if (Input.IsActionPressed("ctrl"))
         {
-            Transform = Transform.Translated(Vector3.Left * TRANSLATION_SPEED);
+            if (Input.IsActionPressed("ui_up"))
+            {
+                GD.Print("hi");
+                Transform = Transform.Translated(Vector3.Forward * TRANSLATION_SPEED);
+            }
+            if (Input.IsActionPressed("ui_down"))
+            {
+                Transform = Transform.Translated(Vector3.Back * TRANSLATION_SPEED);
+            }
         }
-        if (Input.IsActionPressed("ui_right"))
+        else
         {
-            Transform = Transform.Translated(Vector3.Right * TRANSLATION_SPEED);
-        }
-        if (Input.IsActionPressed("ui_up"))
-        {
-            Transform = Transform.Translated(Vector3.Up * TRANSLATION_SPEED);
-        }
-        if (Input.IsActionPressed("ui_down"))
-        {
-            Transform = Transform.Translated(Vector3.Down * TRANSLATION_SPEED);
+            if (Input.IsActionPressed("ui_left"))
+            {
+                Transform = Transform.Translated(Vector3.Left * TRANSLATION_SPEED);
+            }
+            if (Input.IsActionPressed("ui_right"))
+            {
+                Transform = Transform.Translated(Vector3.Right * TRANSLATION_SPEED);
+            }
+            if (Input.IsActionPressed("ui_up"))
+            {
+                Transform = Transform.Translated(Vector3.Up * TRANSLATION_SPEED);
+            }
+            if (Input.IsActionPressed("ui_down"))
+            {
+                Transform = Transform.Translated(Vector3.Down * TRANSLATION_SPEED);
+            }
         }
     }
 
