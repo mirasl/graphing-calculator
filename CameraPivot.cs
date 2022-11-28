@@ -27,7 +27,6 @@ public class CameraPivot : Spatial
     {
         if (Input.IsActionPressed("ui_left"))
         {
-            //Transform = Transform.Rotated(Vector3.Up, -ROTATION_SPEED);
             RotateY(-ROTATION_SPEED);
         }
         if (Input.IsActionPressed("ui_right"))
@@ -36,13 +35,13 @@ public class CameraPivot : Spatial
         }
         if (Input.IsActionPressed("ui_up") && Rotation.x > -Mathf.Pi/2 + 0.05f)
         {
-            //Transform = Transform.Rotated(Vector3.Left.Rotated(Vector3.Up, Rotation.y), ROTATION_SPEED);
-            Rotate(Vector3.Left.Rotated(Vector3.Up, Rotation.y), ROTATION_SPEED);
+            Rotate(Vector3.Left.Rotated(Vector3.Up, Rotation.y), 
+                    ROTATION_SPEED);
         }
         if (Input.IsActionPressed("ui_down") && Rotation.x < Mathf.Pi/2 - 0.05f)
         {
-            //Transform = Transform.Rotated(Vector3.Left.Rotated(Vector3.Up, Rotation.y), -ROTATION_SPEED);
-            Rotate(Vector3.Left.Rotated(Vector3.Up, Rotation.y), -ROTATION_SPEED);
+            Rotate(Vector3.Left.Rotated(Vector3.Up, Rotation.y), 
+                    -ROTATION_SPEED);
         }
     }
 
@@ -52,31 +51,36 @@ public class CameraPivot : Spatial
         {
             if (Input.IsActionPressed("ui_up"))
             {
-                GD.Print("hi");
-                Transform = Transform.Translated(Vector3.Forward * TRANSLATION_SPEED);
+                Transform = Transform.Translated(Vector3.Forward * 
+                        TRANSLATION_SPEED);
             }
             if (Input.IsActionPressed("ui_down"))
             {
-                Transform = Transform.Translated(Vector3.Back * TRANSLATION_SPEED);
+                Transform = Transform.Translated(Vector3.Back * 
+                        TRANSLATION_SPEED);
             }
         }
         else
         {
             if (Input.IsActionPressed("ui_left"))
             {
-                Transform = Transform.Translated(Vector3.Left * TRANSLATION_SPEED);
+                Transform = Transform.Translated(Vector3.Left * 
+                        TRANSLATION_SPEED);
             }
             if (Input.IsActionPressed("ui_right"))
             {
-                Transform = Transform.Translated(Vector3.Right * TRANSLATION_SPEED);
+                Transform = Transform.Translated(Vector3.Right * 
+                        TRANSLATION_SPEED);
             }
             if (Input.IsActionPressed("ui_up"))
             {
-                Transform = Transform.Translated(Vector3.Up * TRANSLATION_SPEED);
+                Transform = Transform.Translated(Vector3.Up * 
+                        TRANSLATION_SPEED);
             }
             if (Input.IsActionPressed("ui_down"))
             {
-                Transform = Transform.Translated(Vector3.Down * TRANSLATION_SPEED);
+                Transform = Transform.Translated(Vector3.Down * 
+                        TRANSLATION_SPEED);
             }
         }
     }
