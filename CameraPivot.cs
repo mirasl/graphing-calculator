@@ -3,7 +3,7 @@ using System;
 
 public class CameraPivot : Spatial
 {
-    private const float ROTATION_SPEED = 0.04f; // radians per frame
+    private const float ROTATION_SPEED = 0.02f; // radians per frame
     private const float TRANSLATION_SPEED = 0.07f; // meters per frame
     private const float ZOOM_FACTOR = 0.8f; // multiplied by current zoom
 
