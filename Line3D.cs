@@ -3,9 +3,9 @@ using System;
 
 public class Line3D : ImmediateGeometry
 {
-    [Export] Vector3 Vertex1;
-    [Export] Vector3 Vertex2;
-    [Export] Color color;
+    [Export] public Vector3 Vertex1;
+    [Export] public Vector3 Vertex2;
+    [Export] public Color color;
     
     public override void _Ready()
     {

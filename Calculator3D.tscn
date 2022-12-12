@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://CameraPivot.cs" type="Script" id=1]
 [ext_resource path="res://Line3D.cs" type="Script" id=2]
+[ext_resource path="res://Gridlines.cs" type="Script" id=3]
+[ext_resource path="res://Calculator3D.cs" type="Script" id=4]
 
 [sub_resource type="SpatialMaterial" id=8]
 vertex_color_use_as_albedo = true
@@ -19,22 +21,26 @@ background_color = Color( 1, 1, 1, 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 
 [node name="Calculator3D" type="Spatial"]
+script = ExtResource( 4 )
 
-[node name="XAxis" type="ImmediateGeometry" parent="."]
+[node name="Gridlines" type="Spatial" parent="."]
+script = ExtResource( 3 )
+
+[node name="XAxis" type="ImmediateGeometry" parent="Gridlines"]
 material_override = SubResource( 8 )
 script = ExtResource( 2 )
 Vertex1 = Vector3( -200, 0, 0 )
 Vertex2 = Vector3( 200, 0, 0 )
 color = Color( 1, 0, 0, 1 )
 
-[node name="YAxis" type="ImmediateGeometry" parent="."]
+[node name="YAxis" type="ImmediateGeometry" parent="Gridlines"]
 material_override = SubResource( 10 )
 script = ExtResource( 2 )
 Vertex1 = Vector3( 0, -200, 0 )
 Vertex2 = Vector3( 0, 200, 0 )
 color = Color( 0.54902, 0.960784, 0.266667, 1 )
 
-[node name="ZAxis" type="ImmediateGeometry" parent="."]
+[node name="ZAxis" type="ImmediateGeometry" parent="Gridlines"]
 material_override = SubResource( 11 )
 script = ExtResource( 2 )
 Vertex1 = Vector3( 0, 0, -200 )
@@ -54,3 +60,5 @@ current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 7 )
+
+[connection signal="GetCameraPosition" from="Gridlines" to="." method="sig_GetCameraPosition"]
