@@ -18,7 +18,7 @@ public class Calculator2D : Node2D
 	public override void _Ready()
 	{
 		pLine = GD.Load<PackedScene>("res://Line2D.tscn");
-
+		
 		// e = interpret("x^(2-1)");
 		
 		// Graph(e);
@@ -142,7 +142,8 @@ public class Calculator2D : Node2D
 		List<String> strList = seperate(input);
 		List<Element> flatElements = new List<Element>();
 		float floatS = 0;
-		foreach (String s in strList) {
+		for (int i = 0; i < strList.Count; i++) {
+			String s = strList[i];
 			if (float.TryParse(s, out floatS)) {
 				flatElements.Add(new Value("value", float.Parse(s)));
 			} else if (s.Equals("+")) {
@@ -161,11 +162,46 @@ public class Calculator2D : Node2D
 				flatElements.Add(new Paren("open"));
 			} else if (s.Equals(")")) {
 				flatElements.Add(new Paren("close"));
+			} else if (s.Equals("s")) {
+				i++;
+				if (strList[i].Equals("i")) {
+					i++;
+					if (strList[i].Equals("n")) {
+						flatElements.Add(new Sine("sine", false));
+					} else {
+						i -= 2;
+					}
+				} else {
+					i--;
+				}
+			} else if (s.Equals("c")) {
+				i++;
+				if (strList[i].Equals("o")) {
+					i++;
+					if (strList[i].Equals("s")) {
+						flatElements.Add(new Cosine("cosine", false));
+					} else {
+						i -= 2;
+					}
+				} else {
+					i--;
+				}
+			} else if (s.Equals("t")) {
+				i++;
+				if (strList[i].Equals("a")) {
+					i++;
+					if (strList[i].Equals("n")) {
+						flatElements.Add(new Tangent("tangent", false));
+					} else {
+						i -= 2;
+					}
+				} else {
+					i--;
+				}
 			}
 		}
 		Element tree = Pemdas(flatElements);
 		return tree;
-
 	}
 	
 	public List<String> seperate(String input) {
@@ -230,6 +266,14 @@ public class Calculator2D : Node2D
 					castE.setX(g);
 					input.RemoveRange(i+1, j-i-1);
 				}
+			}
+		}
+		for (int i = 0; i < input.Count; i++) {
+			Element e = input[i];
+			if (e is Sine || e is Cosine || e is Tangent) {
+				Operator castE = (Operator) e;
+				castE.setX(input[i+1]);
+				input.RemoveAt(i+1);
 			}
 		}
 		for (int i = 0; i < input.Count; i++) {
@@ -306,7 +350,7 @@ public class Variable : Element {
 }
 
 public class Paren : Operator {
-	public Paren(String typeIn) : base(typeIn) {
+	public Paren(String typeIn) : base(typeIn, false) {
 	}
 	
 	override public float run(float x) {
@@ -317,8 +361,10 @@ public class Paren : Operator {
 abstract public class Operator : Element {
 	public Element a;
 	public Element b;
+	public bool inverse;
 	
-	public Operator(String typeIn) : base(typeIn) {
+	public Operator(String typeIn, bool inverseIn) : base(typeIn) {
+		inverse = inverseIn;
 	}
 	
 	public void setX(Element aIn) {
@@ -331,10 +377,7 @@ abstract public class Operator : Element {
 }
 
 public class Add : Operator {
-	bool inverse;
-	
-	public Add(String typeIn, bool inverseIn) : base(typeIn) {
-		inverse = inverseIn;
+	public Add(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
 	}
 	
 	override public float run(float x) {
@@ -348,10 +391,7 @@ public class Add : Operator {
 }
 
 public class Multiply : Operator {
-	bool inverse;
-	
-	public Multiply(String typeIn, bool inverseIn) : base(typeIn){
-		inverse = inverseIn;
+	public Multiply(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
 	}
 	
 	override public float run(float x) {
@@ -364,10 +404,7 @@ public class Multiply : Operator {
 }
 
 public class Exponent : Operator {
-	bool inverse;
-	
-	public Exponent(String typeIn, bool inverseIn) : base(typeIn) {
-		inverse = inverseIn;
+	public Exponent(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
 	}
 	
 	override public float run(float x) {
@@ -375,6 +412,48 @@ public class Exponent : Operator {
 			return Mathf.Pow(a.run(x), b.run(x));
 		} else {
 			return Mathf.Pow(a.run(x), 1/b.run(x));
+		}
+		
+	}
+}
+
+public class Sine : Operator {
+	public Sine(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
+	}
+	
+	override public float run(float x) {
+		if (!inverse) {
+			return Mathf.Sin(a.run(x));
+		} else {
+			return Mathf.Sin(a.run(x));
+		}
+		
+	}
+}
+
+public class Cosine : Operator {
+	public Cosine(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
+	}
+	
+	override public float run(float x) {
+		if (!inverse) {
+			return Mathf.Cos(a.run(x));
+		} else {
+			return Mathf.Cos(a.run(x));
+		}
+		
+	}
+}
+
+public class Tangent : Operator {
+	public Tangent(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
+	}
+	
+	override public float run(float x) {
+		if (!inverse) {
+			return Mathf.Tan(a.run(x));
+		} else {
+			return Mathf.Tan(a.run(x));
 		}
 		
 	}
