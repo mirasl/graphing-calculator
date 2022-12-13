@@ -6,7 +6,7 @@ public class Gridlines : Spatial
 {
     [Signal] delegate Transform GetCameraPosition();
 
-    const int LINE_NUMBER = 15;
+    const int LINE_NUMBER = 20;
 
     public Vector3 GlobalCameraOrigin {set; get;}
 
@@ -24,7 +24,7 @@ public class Gridlines : Spatial
         gridlines.Add(new ArrayList());
         
         EmitSignal("GetCameraPosition");
-        strongInterval = (int)Mathf.Pow(10, (int)(GlobalCameraOrigin.y / 5));
+        strongInterval = 1;//(int)Mathf.Pow(10, (int)(GlobalCameraOrigin.y / 5));
         
         // draw strong lines
         for (int i = -LINE_NUMBER; i <= LINE_NUMBER; i++)
@@ -33,7 +33,7 @@ public class Gridlines : Spatial
             {
                 continue;
             }
-            float grayscale = (float)((LINE_NUMBER*0.75f) - (Mathf.Abs(i) / 2)) / (float)LINE_NUMBER;
+            float grayscale = (float)((LINE_NUMBER*0.9f) - (Mathf.Abs(i) / 2)) / (float)LINE_NUMBER;
 
             Line3D line = line3dScene.Instance<Line3D>();
             line.Vertex1 = new Vector3(LINE_NUMBER*strongInterval, 0, i*strongInterval);
@@ -49,7 +49,7 @@ public class Gridlines : Spatial
             {
                 continue;
             }
-            float grayscale = (float)((LINE_NUMBER*0.75f) - (Mathf.Abs(i) / 2)) / (float)LINE_NUMBER;
+            float grayscale = (float)((LINE_NUMBER*0.9f) - (Mathf.Abs(i) / 2)) / (float)LINE_NUMBER;
 
             Line3D line = line3dScene.Instance<Line3D>();
             line.Vertex1 = new Vector3(i*strongInterval, 0, LINE_NUMBER*strongInterval);
