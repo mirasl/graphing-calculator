@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://CameraPivot.cs" type="Script" id=1]
 [ext_resource path="res://Line3D.cs" type="Script" id=2]
 [ext_resource path="res://Gridlines.cs" type="Script" id=3]
 [ext_resource path="res://Calculator3D.cs" type="Script" id=4]
+[ext_resource path="res://Graph.cs" type="Script" id=5]
 
 [sub_resource type="SpatialMaterial" id=8]
 vertex_color_use_as_albedo = true
@@ -19,6 +20,11 @@ vertex_color_use_as_albedo = true
 [sub_resource type="Environment" id=7]
 background_color = Color( 1, 1, 1, 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=13]
+params_cull_mode = 2
+
+[sub_resource type="ArrayMesh" id=12]
 
 [node name="Calculator3D" type="Spatial"]
 script = ExtResource( 4 )
@@ -60,5 +66,10 @@ current = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 7 )
+
+[node name="Graph" type="MeshInstance" parent="."]
+material_override = SubResource( 13 )
+mesh = SubResource( 12 )
+script = ExtResource( 5 )
 
 [connection signal="GetCameraPosition" from="Gridlines" to="." method="sig_GetCameraPosition"]
