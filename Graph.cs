@@ -7,27 +7,51 @@ using System.Text.RegularExpressions;
 
 public class Graph : MeshInstance
 {
+	public static float x;
+	public static float y;
+	public static float t;
+
+	const int PRECISION = 500;
+	const int ANIMATION_PRECISION = 150;
+
+	Element e;
+
+	ImmediateGeometry ig;
+	float time = 0;
+
 	public override void _Ready()
 	{
-		DrawGraph();
+		e = interpret("t");
+		ig = GetNode<ImmediateGeometry>("ImmediateGeometry");
+
+		//DrawGraph(new Vector2(15, 1));
 	}
 
-	public void DrawGraph()
+	public override void _PhysicsProcess(float delta)
+	{
+		Graph.t += delta;
+		GD.Print(Graph.t);
+
+		//Element e = interpret("sin(x + t) - sin(y + t)");
+		DrawAnimatedGraph(new Vector2(15, 15));
+	}
+
+	public void DrawGraph(Vector2 size)
 	{
 		SurfaceTool st = new SurfaceTool();
 
 		st.Begin(Mesh.PrimitiveType.Lines);
 
-		for (int i = -100; i < 100; i++)
+		for (int i = -PRECISION; i < PRECISION; i++)
 		{
-			float x = (float)i / 100.0f;
-			for (int j = -100; j < 100; j++)
+			float x = (float)i / (float)PRECISION * size.x;
+			for (int j = -PRECISION; j < PRECISION; j++)
 			{
-				float z = (float)j / 100.0f;
-				
-				Element e = interpret("x+y");
-				
-				st.AddVertex(new Vector3(x, e.run(x, z), z));
+				float z = (float)j / (float)PRECISION * size.y;
+
+				Graph.x = x;
+				Graph.y = z;
+				st.AddVertex(new Vector3(x, e.run(), z));
 			}
 		}
 
@@ -37,6 +61,28 @@ public class Graph : MeshInstance
 		Mesh = m;
 	}
 	
+	public void DrawAnimatedGraph(Vector2 size)
+	{
+		ig.Clear();
+
+		ig.Begin(Mesh.PrimitiveType.Lines);
+
+		for (int i = -ANIMATION_PRECISION; i < ANIMATION_PRECISION; i++)
+		{
+			float x = (float)i / (float)ANIMATION_PRECISION * size.x;
+			for (int j = -ANIMATION_PRECISION; j < ANIMATION_PRECISION; j++)
+			{
+				float z = (float)j / (float)ANIMATION_PRECISION * size.y;
+
+				Graph.x = x;
+				Graph.y = z;
+				ig.AddVertex(new Vector3(x, e.run(), z));
+			}
+		}
+
+		ig.End();
+	}
+
 	public Element interpret(String input) {
 		List<String> strList = seperate(input);
 		List<Element> flatElements = new List<Element>();
@@ -55,7 +101,7 @@ public class Graph : MeshInstance
 				flatElements.Add(new Multiply("divide", true));
 			} else if (s.Equals("^")) {
 				flatElements.Add(new Exponent("exponent", false));
-			} else if (s.Equals("x") || s.Equals("y")) {
+			} else if (s.Equals("x") || s.Equals("y") || s.Equals("t")) {
 				flatElements.Add(new Variable("variable", s));
 			} else if (s.Equals("(")) {
 				flatElements.Add(new Paren("open"));
@@ -223,8 +269,7 @@ public abstract class Element {
 		type = typeIn;
 	}
 	
-	abstract public float run(float x);
-	abstract public float run(float x, float y);
+	abstract public float run();
 }
 
 public class Value : Element {
@@ -235,10 +280,7 @@ public class Value : Element {
 		a = aIn;
 	}
 	
-	override public float run(float x) {
-		return a;
-	}
-	override public float run(float x, float y) {
+	override public float run() {
 		return a;
 	}
 }
@@ -249,14 +291,13 @@ public class Variable : Element {
 		name = nameIn;
 	}
 	
-	override public float run(float x) {
-		return x;
-	}
-		override public float run(float x, float y) {
+	override public float run() {
 		if (name == "x") {
-			return x;
+			return Graph.x;
 		} else if (name == "y") {
-			return y;
+			return Graph.y;
+		} else if (name == "t") {
+			return Graph.t;
 		} else {
 			throw new Exception("bad variable name");
 		}
@@ -267,11 +308,8 @@ public class Paren : Operator {
 	public Paren(String typeIn) : base(typeIn, false) {
 	}
 	
-	override public float run(float x) {
-		return a.run(x);
-	}
-	override public float run(float x, float y) {
-		return a.run(x, y);
+	override public float run() {
+		return a.run();
 	}
 }
 
@@ -297,19 +335,11 @@ public class Add : Operator {
 	public Add(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
 	}
 	
-	override public float run(float x) {
+	override public float run() {
 		if (!inverse) {
-			return a.run(x)+b.run(x);
+			return a.run()+b.run();
 		} else {
-			return a.run(x)-b.run(x);
-		}
-		
-	}
-	override public float run(float x, float y) {
-		if (!inverse) {
-			return a.run(x, y)+b.run(x, y);
-		} else {
-			return a.run(x, y)-b.run(x, y);
+			return a.run()-b.run();
 		}
 		
 	}
@@ -319,20 +349,12 @@ public class Multiply : Operator {
 	public Multiply(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
 	}
 	
-	override public float run(float x) {
+	override public float run() {
 		if (!inverse) {
-			return a.run(x)*b.run(x);
+			return a.run()*b.run();
 		} else {
-			return a.run(x)/b.run(x);
+			return a.run()/b.run();
 		}
-	}
-	override public float run(float x, float y) {
-		if (!inverse) {
-			return a.run(x, y)*b.run(x, y);
-		} else {
-			return a.run(x, y)/b.run(x, y);
-		}
-		
 	}
 }
 
@@ -340,19 +362,11 @@ public class Exponent : Operator {
 	public Exponent(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
 	}
 	
-	override public float run(float x) {
+	override public float run() {
 		if (!inverse) {
-			return Mathf.Pow(a.run(x), b.run(x));
+			return Mathf.Pow(a.run(), b.run());
 		} else {
-			return Mathf.Pow(a.run(x), 1/b.run(x));
-		}
-		
-	}
-	override public float run(float x, float y) {
-		if (!inverse) {
-			return Mathf.Pow(a.run(x, y), b.run(x, y));
-		} else {
-			return Mathf.Pow(a.run(x, y), 1/b.run(x, y));
+			return Mathf.Pow(a.run(), 1/b.run());
 		}
 		
 	}
@@ -362,19 +376,11 @@ public class Sine : Operator {
 	public Sine(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
 	}
 	
-	override public float run(float x) {
+	override public float run() {
 		if (!inverse) {
-			return Mathf.Sin(a.run(x));
+			return Mathf.Sin(a.run());
 		} else {
-			return Mathf.Sin(a.run(x));
-		}
-		
-	}
-	override public float run(float x, float y) {
-		if (!inverse) {
-			return Mathf.Sin(a.run(x, y));
-		} else {
-			return Mathf.Sin(a.run(x, y));
+			return Mathf.Sin(a.run());
 		}
 		
 	}
@@ -384,19 +390,11 @@ public class Cosine : Operator {
 	public Cosine(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
 	}
 	
-	override public float run(float x) {
+	override public float run() {
 		if (!inverse) {
-			return Mathf.Cos(a.run(x));
+			return Mathf.Cos(a.run());
 		} else {
-			return Mathf.Cos(a.run(x));
-		}
-		
-	}
-	override public float run(float x, float y) {
-		if (!inverse) {
-			return Mathf.Cos(a.run(x, y));
-		} else {
-			return Mathf.Cos(a.run(x, y));
+			return Mathf.Cos(a.run());
 		}
 		
 	}
@@ -406,19 +404,11 @@ public class Tangent : Operator {
 	public Tangent(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
 	}
 	
-	override public float run(float x) {
+	override public float run() {
 		if (!inverse) {
-			return Mathf.Tan(a.run(x));
+			return Mathf.Tan(a.run());
 		} else {
-			return Mathf.Tan(a.run(x));
-		}
-		
-	}
-	override public float run(float x, float y) {
-		if (!inverse) {
-			return Mathf.Tan(a.run(x, y));
-		} else {
-			return Mathf.Tan(a.run(x, y));
+			return Mathf.Tan(a.run());
 		}
 		
 	}

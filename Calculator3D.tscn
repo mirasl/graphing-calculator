@@ -72,4 +72,6 @@ material_override = SubResource( 13 )
 mesh = SubResource( 12 )
 script = ExtResource( 5 )
 
+[node name="ImmediateGeometry" type="ImmediateGeometry" parent="Graph"]
+
 [connection signal="GetCameraPosition" from="Gridlines" to="." method="sig_GetCameraPosition"]
