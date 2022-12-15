@@ -12,7 +12,7 @@ public class Graph : MeshInstance
 	public static float t;
 
 	const int PRECISION = 500;
-	const int ANIMATION_PRECISION = 150;
+	const int ANIMATION_PRECISION = 50;
 
 	Element e;
 
@@ -21,7 +21,7 @@ public class Graph : MeshInstance
 
 	public override void _Ready()
 	{
-		e = interpret("t");
+		e = interpret("sin(t+x)-sin(t+y)");
 		ig = GetNode<ImmediateGeometry>("ImmediateGeometry");
 
 		//DrawGraph(new Vector2(15, 1));
@@ -30,9 +30,7 @@ public class Graph : MeshInstance
 	public override void _PhysicsProcess(float delta)
 	{
 		Graph.t += delta;
-		GD.Print(Graph.t);
-
-		//Element e = interpret("sin(x + t) - sin(y + t)");
+		
 		DrawAnimatedGraph(new Vector2(15, 15));
 	}
 
@@ -90,19 +88,23 @@ public class Graph : MeshInstance
 		for (int i = 0; i < strList.Count; i++) {
 			String s = strList[i];
 			if (float.TryParse(s, out floatS)) {
-				flatElements.Add(new Value("value", float.Parse(s)));
+				flatElements.Add(new Value(float.Parse(s)));
 			} else if (s.Equals("+")) {
-				flatElements.Add(new Add("add", false));
+				flatElements.Add(new Add(false));
 			} else if (s.Equals("-")) {
-				flatElements.Add(new Add("subtract", true));
+				flatElements.Add(new Add(true));
 			} else if (s.Equals("*")) {
-				flatElements.Add(new Multiply("multiply", false));
+				flatElements.Add(new Multiply(false));
 			} else if (s.Equals("/")) {
-				flatElements.Add(new Multiply("divide", true));
+				flatElements.Add(new Multiply(true));
 			} else if (s.Equals("^")) {
-				flatElements.Add(new Exponent("exponent", false));
-			} else if (s.Equals("x") || s.Equals("y") || s.Equals("t")) {
-				flatElements.Add(new Variable("variable", s));
+				flatElements.Add(new Exponent(false));
+			} else if (s.Equals("x")) {
+				flatElements.Add(new X());
+			} else if (s.Equals("y")) {
+				flatElements.Add(new Y());
+			} else if (s.Equals("t")) {
+				flatElements.Add(new T());
 			} else if (s.Equals("(")) {
 				flatElements.Add(new Paren("open"));
 			} else if (s.Equals(")")) {
@@ -112,7 +114,7 @@ public class Graph : MeshInstance
 				if (strList[i].Equals("i")) {
 					i++;
 					if (strList[i].Equals("n")) {
-						flatElements.Add(new Sine("sine", false));
+						flatElements.Add(new Sine(false));
 					} else {
 						i -= 2;
 					}
@@ -124,7 +126,7 @@ public class Graph : MeshInstance
 				if (strList[i].Equals("o")) {
 					i++;
 					if (strList[i].Equals("s")) {
-						flatElements.Add(new Cosine("cosine", false));
+						flatElements.Add(new Cosine(false));
 					} else {
 						i -= 2;
 					}
@@ -136,7 +138,7 @@ public class Graph : MeshInstance
 				if (strList[i].Equals("a")) {
 					i++;
 					if (strList[i].Equals("n")) {
-						flatElements.Add(new Tangent("tangent", false));
+						flatElements.Add(new Tangent(false));
 					} else {
 						i -= 2;
 					}
@@ -144,6 +146,9 @@ public class Graph : MeshInstance
 					i--;
 				}
 			}
+		}
+		foreach (Element e in flatElements) {
+			GD.Print(e.type);
 		}
 		Element tree = Pemdas(flatElements);
 		return tree;
@@ -156,10 +161,8 @@ public class Graph : MeshInstance
 		String type = "";
 		if (Char.IsDigit(input, 0)) {
 			type = "number";
-		} else if (input[0] == 'x') {
-			type = "variable";
 		} else {
-			type = "operator";
+			type = "operator or variable";
 		}
 		List<String> output = new List<String>();
 		String current = "";
@@ -172,14 +175,10 @@ public class Graph : MeshInstance
 					current = input[i].ToString();
 					type = "number";
 				}
-			} else if(input[i] == 'x') {
-				output.Add(current);
-				current = input[i].ToString();
-				type = "variable";
 			} else {
 				output.Add(current);
 				current = input[i].ToString();
-				type = "operator";
+				type = "operator or variable";
 			}
 		}
 		output.Add(current);
@@ -276,31 +275,43 @@ public class Value : Element {
 	public float a;
 	
 	
-	public Value(String typeIn, float aIn) : base(typeIn) {
+	public Value(float aIn) : base("value") {
 		a = aIn;
 	}
 	
 	override public float run() {
 		return a;
 	}
+	
+	public float testMethod() {
+		return Graph.t;
+	}
 }
 
-public class Variable : Element {
-	String name;
-	public Variable(String typeIn, String nameIn) : base(typeIn) {
-		name = nameIn;
+public class X : Element {
+	public X() : base("x") {
 	}
 	
 	override public float run() {
-		if (name == "x") {
-			return Graph.x;
-		} else if (name == "y") {
-			return Graph.y;
-		} else if (name == "t") {
-			return Graph.t;
-		} else {
-			throw new Exception("bad variable name");
-		}
+		return Graph.x;
+	}
+}
+
+public class Y : Element {
+	public Y() : base("y") {
+	}
+	
+	override public float run() {
+		return Graph.y;
+	}
+}
+
+public class T : Element {
+	public T() : base("t") {
+	}
+	
+	override public float run() {
+		return Graph.t;
 	}
 }
 
@@ -332,7 +343,7 @@ abstract public class Operator : Element {
 }
 
 public class Add : Operator {
-	public Add(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
+	public Add(bool inverseIn) : base("add", inverseIn) {
 	}
 	
 	override public float run() {
@@ -346,7 +357,7 @@ public class Add : Operator {
 }
 
 public class Multiply : Operator {
-	public Multiply(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
+	public Multiply(bool inverseIn) : base("multiply", inverseIn) {
 	}
 	
 	override public float run() {
@@ -359,7 +370,7 @@ public class Multiply : Operator {
 }
 
 public class Exponent : Operator {
-	public Exponent(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
+	public Exponent(bool inverseIn) : base("exponent", inverseIn) {
 	}
 	
 	override public float run() {
@@ -373,7 +384,7 @@ public class Exponent : Operator {
 }
 
 public class Sine : Operator {
-	public Sine(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
+	public Sine(bool inverseIn) : base("sine", inverseIn) {
 	}
 	
 	override public float run() {
@@ -387,7 +398,7 @@ public class Sine : Operator {
 }
 
 public class Cosine : Operator {
-	public Cosine(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
+	public Cosine(bool inverseIn) : base("cosine", inverseIn) {
 	}
 	
 	override public float run() {
@@ -401,7 +412,7 @@ public class Cosine : Operator {
 }
 
 public class Tangent : Operator {
-	public Tangent(String typeIn, bool inverseIn) : base(typeIn, inverseIn) {
+	public Tangent(bool inverseIn) : base("tangent", inverseIn) {
 	}
 	
 	override public float run() {
