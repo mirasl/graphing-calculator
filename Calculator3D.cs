@@ -23,8 +23,6 @@ public class Calculator3D : Spatial
 
 	public void sig_Graph(string expression, float s = 15, float p = 0.66f) // sig_Graph() fix this in editor
 	{
-		//GD.Print(s);
-		p /= 100.0f;
 		g.ClearGraph();
 		g.e = g.interpret(expression);
 		if (expression.Find("t") != -1)
