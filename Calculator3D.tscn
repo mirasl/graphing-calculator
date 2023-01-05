@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://CameraPivot.cs" type="Script" id=1]
 [ext_resource path="res://Line3D.cs" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Graph.cs" type="Script" id=5]
 [ext_resource path="res://RegularText.tres" type="Theme" id=6]
 [ext_resource path="res://Inter-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://UI.cs" type="Script" id=8]
 
 [sub_resource type="SpatialMaterial" id=8]
 vertex_color_use_as_albedo = true
@@ -17,8 +18,6 @@ vertex_color_use_as_albedo = true
 [sub_resource type="SpatialMaterial" id=11]
 vertex_color_use_as_albedo = true
 
-[sub_resource type="PointMesh" id=3]
-
 [sub_resource type="Environment" id=7]
 background_color = Color( 0.890196, 0.890196, 0.890196, 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
@@ -28,11 +27,41 @@ params_cull_mode = 2
 
 [sub_resource type="ArrayMesh" id=12]
 
+[sub_resource type="Theme" id=18]
+
 [sub_resource type="DynamicFont" id=14]
 font_data = ExtResource( 7 )
 
 [sub_resource type="Theme" id=15]
 default_font = SubResource( 14 )
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.501961, 0.823529, 0.839216, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.376471, 0.835294, 0.439216, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.501961, 0.823529, 0.839216, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.956863, 0.611765, 0.462745, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="Calculator3D" type="Spatial"]
 script = ExtResource( 4 )
@@ -61,10 +90,6 @@ Vertex1 = Vector3( 0, 0, -200 )
 Vertex2 = Vector3( 0, 0, 200 )
 color = Color( 0, 0.505882, 1, 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-visible = false
-mesh = SubResource( 3 )
-
 [node name="CameraPivot" type="Spatial" parent="."]
 script = ExtResource( 1 )
 
@@ -85,52 +110,108 @@ script = ExtResource( 5 )
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 8 )
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
 anchor_bottom = 1.0
-margin_right = 540.0
-margin_bottom = -943.0
+margin_top = -3.0
+margin_right = 697.0
+margin_bottom = -958.0
+theme = SubResource( 18 )
 color = Color( 0.227451, 0.211765, 0.27451, 1 )
 
-[node name="LineEdit" type="LineEdit" parent="UI"]
+[node name="Equation" type="LineEdit" parent="UI"]
 margin_left = 117.0
-margin_top = 7.0
+margin_top = 11.0
 margin_right = 524.0
-margin_bottom = 49.0
+margin_bottom = 53.0
 theme = ExtResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-placeholder_text = " [Enter Equation Here]"
+placeholder_text = "[Enter Equation Here]"
 caret_blink = true
 
 [node name="Label" type="Label" parent="UI"]
 margin_left = 12.0
-margin_top = 11.0
+margin_top = 15.0
 margin_right = 176.0
-margin_bottom = 60.0
+margin_bottom = 64.0
 theme = ExtResource( 6 )
 text = "z(x, y) = "
 
 [node name="HSlider" type="HSlider" parent="UI"]
-margin_left = 148.0
+margin_left = 147.0
 margin_top = 70.0
-margin_right = 516.0
+margin_right = 327.0
 margin_bottom = 113.0
 
 [node name="Label2" type="Label" parent="UI"]
-margin_left = 14.0
-margin_top = 109.0
-margin_right = 520.0
-margin_bottom = 129.0
+visible = false
+margin_left = -467.0
+margin_top = 198.0
+margin_right = 50.0
+margin_bottom = 264.0
 theme = SubResource( 15 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "(Higher precision is slower and may not work on weak computers)"
+text = "Higher precision may not work on less powerful computers. Graphs using t-variable will automatically use a slightly lower precision to account for increased processing requirements."
+autowrap = true
+
+[node name="Label4" type="Label" parent="UI"]
+visible = false
+margin_left = 16.0
+margin_top = 258.0
+margin_right = 531.0
+margin_bottom = 324.0
+theme = SubResource( 15 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Size is inversely proportional to precision. Greater size lowers concentration of points and spreads points out over a greater distance."
+autowrap = true
 
 [node name="Label3" type="Label" parent="UI"]
-margin_left = 22.0
-margin_top = 73.0
-margin_right = 138.0
-margin_bottom = 105.0
+margin_left = 18.0
+margin_top = 72.0
+margin_right = 134.0
+margin_bottom = 104.0
 theme = ExtResource( 6 )
 text = "Precision:"
 
+[node name="Label5" type="Label" parent="UI"]
+margin_left = 356.0
+margin_top = 72.0
+margin_right = 472.0
+margin_bottom = 104.0
+theme = ExtResource( 6 )
+text = "Size:"
+
+[node name="Size" type="LineEdit" parent="UI"]
+margin_left = 425.0
+margin_top = 67.0
+margin_right = 519.0
+margin_bottom = 109.0
+theme = ExtResource( 6 )
+placeholder_text = "15"
+
+[node name="Button" type="Button" parent="UI"]
+margin_left = 535.0
+margin_top = 13.0
+margin_right = 682.0
+margin_bottom = 50.0
+theme = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_styles/hover = SubResource( 19 )
+custom_styles/normal = SubResource( 16 )
+text = "Graph!"
+
+[node name="Button2" type="Button" parent="UI"]
+margin_left = 535.0
+margin_top = 69.0
+margin_right = 682.0
+margin_bottom = 107.0
+theme = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_styles/hover = SubResource( 20 )
+custom_styles/normal = SubResource( 17 )
+text = "Random"
+
 [connection signal="GetCameraPosition" from="Gridlines" to="." method="sig_GetCameraPosition"]
+[connection signal="Graph" from="UI" to="." method="sig_Graph"]
+[connection signal="pressed" from="UI/Button" to="UI" method="sig_GraphButtonPressed"]

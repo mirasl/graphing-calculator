@@ -11,41 +11,49 @@ public class Graph : MeshInstance
 	public static float y;
 	public static float t;
 
-	const int PRECISION = 500;
-	const int ANIMATION_PRECISION = 50;
+	const int MAX_PRECISION = 500; // MAXIMUM
+	const int MAX_ANIMATION_PRECISION = 100; // MAXIMUM
 
-	Element e;
+	public Element e;
 
+	SurfaceTool st;
 	ImmediateGeometry ig;
 	float time = 0;
 
 	public override void _Ready()
 	{
-		e = interpret("sin(t+x)-sin(t+y)");
 		ig = GetNode<ImmediateGeometry>("ImmediateGeometry");
+		st = new SurfaceTool();
 
-		//DrawGraph(new Vector2(15, 1));
+		e = interpret("sin(x + t) - sin(y + t)");
+		//DrawGraph(new Vector2(15, 15), 0.5f);
 	}
 
 	public override void _PhysicsProcess(float delta)
 	{
 		Graph.t += delta;
 		
-		DrawAnimatedGraph(new Vector2(15, 15));
+		//DrawAnimatedGraph(new Vector2(15, 15), 70.0f);
 	}
 
-	public void DrawGraph(Vector2 size)
+	public void DrawGraph(Vector2 size, float precisionPercent)
 	{
-		SurfaceTool st = new SurfaceTool();
+		precisionPercent = Mathf.Clamp(precisionPercent, 0, 1);
+		//GD.Print(precisionPercent);
+		int precision = (int)(precisionPercent * (float)MAX_PRECISION);
+		//GD.Print(precision);
+
+		//st.Clear();
+		st = new SurfaceTool();
 
 		st.Begin(Mesh.PrimitiveType.Lines);
 
-		for (int i = -PRECISION; i < PRECISION; i++)
+		for (int i = -precision; i < precision; i++)
 		{
-			float x = (float)i / (float)PRECISION * size.x;
-			for (int j = -PRECISION; j < PRECISION; j++)
+			float x = (float)i / (float)precision * size.x;
+			for (int j = -precision; j < precision; j++)
 			{
-				float z = (float)j / (float)PRECISION * size.y;
+				float z = (float)j / (float)precision * size.y;
 
 				Graph.x = x;
 				Graph.y = z;
@@ -53,24 +61,27 @@ public class Graph : MeshInstance
 			}
 		}
 
-
 		Godot.ArrayMesh m = st.Commit();
 
 		Mesh = m;
 	}
 	
-	public void DrawAnimatedGraph(Vector2 size)
+	public void DrawAnimatedGraph(Vector2 size, float precisionPercent)
 	{
+		precisionPercent = Mathf.Clamp(precisionPercent, 0, 1);
+		int precision = (int)(precisionPercent * MAX_ANIMATION_PRECISION);
+		//GD.Print(size);
+
 		ig.Clear();
 
 		ig.Begin(Mesh.PrimitiveType.Lines);
 
-		for (int i = -ANIMATION_PRECISION; i < ANIMATION_PRECISION; i++)
+		for (int i = -precision; i < precision; i++)
 		{
-			float x = (float)i / (float)ANIMATION_PRECISION * size.x;
-			for (int j = -ANIMATION_PRECISION; j < ANIMATION_PRECISION; j++)
+			float x = (float)i / (float)precision * size.x;
+			for (int j = -precision; j < precision; j++)
 			{
-				float z = (float)j / (float)ANIMATION_PRECISION * size.y;
+				float z = (float)j / (float)precision * size.y;
 
 				Graph.x = x;
 				Graph.y = z;
@@ -79,6 +90,13 @@ public class Graph : MeshInstance
 		}
 
 		ig.End();
+	}
+
+	public void ClearGraph()
+	{
+		st.Clear();
+		Mesh = null;
+		//ig = null;
 	}
 
 	public Element interpret(String input) {
@@ -148,7 +166,7 @@ public class Graph : MeshInstance
 			}
 		}
 		foreach (Element e in flatElements) {
-			GD.Print(e.type);
+			//GD.Print(e.type);
 		}
 		Element tree = Pemdas(flatElements);
 		return tree;
