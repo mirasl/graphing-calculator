@@ -4,6 +4,9 @@ using System;
 public class UI : Control
 {
     [Signal] delegate void Graph(string expression, float size, float p);
+    [Signal] delegate void SetLineEditFocus(bool state);
+
+    private bool lineEditFocused = false;
 
     string[] sampleEquations = new string[] {
         "sin(cos(x + t) + (y + t)/2)",
@@ -15,15 +18,17 @@ public class UI : Control
 
     public override void _PhysicsProcess(float delta)
     {
-        // LineEdit le = GetNode<LineEdit>("Equation");
-        // if (le.HasFocus())
-        // {
-        //     GD.Print("focused!");
-        // }
+        LineEdit le = GetNode<LineEdit>("Equation");
+        if (le.HasFocus() != lineEditFocused)
+        {
+            lineEditFocused = le.HasFocus();
+            EmitSignal("SetLineEditFocus", lineEditFocused);
+        }
     }
 
     public void sig_GraphButtonPressed()
     {
+        GetNode<Button>("Graph").ReleaseFocus();
         if (GetNode<LineEdit>("Equation").Text == "")
         {
             return;
@@ -43,7 +48,9 @@ public class UI : Control
 
     public void sig_RandomButtonPressed()
     {
-        GetNode<LineEdit>("Equation").Text = sampleEquations[(int)(GD.Randf()*sampleEquations.Length)];
+        GetNode<Button>("Random").ReleaseFocus();
+        GetNode<LineEdit>("Equation").Text = sampleEquations[(int)(GD.Randf() *
+                sampleEquations.Length)];
         sig_GraphButtonPressed();
     }
 }

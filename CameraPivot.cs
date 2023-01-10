@@ -7,19 +7,24 @@ public class CameraPivot : Spatial
     private const float TRANSLATION_SPEED = 0.07f; // meters per frame
     private const float ZOOM_FACTOR = 0.8f; // multiplied by current zoom
 
+    public bool Disabled = false;
+
     public override void _PhysicsProcess(float delta)
     {
-        if (Input.IsActionPressed("shift"))
+        if (!Disabled)
         {
-            Pan();
-        }
-        else
-        {
-            Orbit();
-        }
-        if (Input.IsActionPressed("ctrl"))
-        {
-            Zoom();
+            if (Input.IsActionPressed("shift"))
+            {
+                Pan();
+            }
+            else
+            {
+                Orbit();
+            }
+            if (Input.IsActionPressed("ctrl"))
+            {
+                Zoom();
+            }
         }
     }
 

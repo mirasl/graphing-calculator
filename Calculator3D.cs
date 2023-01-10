@@ -37,6 +37,11 @@ public class Calculator3D : Spatial
 		}
 	}
 
+	public void sig_SetLineEditFocus(bool focused)
+	{
+		GetNode<CameraPivot>("CameraPivot").Disabled = focused;
+	}
+
     public override void _PhysicsProcess(float delta)
     {
         if (animated)

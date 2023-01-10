@@ -111,6 +111,7 @@ script = ExtResource( 5 )
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+focus_mode = 1
 script = ExtResource( 8 )
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
@@ -195,18 +196,19 @@ margin_bottom = 109.0
 theme = ExtResource( 6 )
 placeholder_text = "15"
 
-[node name="Button" type="Button" parent="UI"]
+[node name="Graph" type="Button" parent="UI"]
 margin_left = 535.0
 margin_top = 13.0
 margin_right = 682.0
 margin_bottom = 50.0
+focus_mode = 1
 theme = ExtResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_styles/hover = SubResource( 19 )
 custom_styles/normal = SubResource( 16 )
 text = "Graph!"
 
-[node name="Button2" type="Button" parent="UI"]
+[node name="Random" type="Button" parent="UI"]
 margin_left = 535.0
 margin_top = 69.0
 margin_right = 682.0
@@ -219,5 +221,6 @@ text = "Random"
 
 [connection signal="GetCameraPosition" from="Gridlines" to="." method="sig_GetCameraPosition"]
 [connection signal="Graph" from="UI" to="." method="sig_Graph"]
-[connection signal="pressed" from="UI/Button" to="UI" method="sig_GraphButtonPressed"]
-[connection signal="pressed" from="UI/Button2" to="UI" method="sig_RandomButtonPressed"]
+[connection signal="SetLineEditFocus" from="UI" to="." method="sig_SetLineEditFocus"]
+[connection signal="pressed" from="UI/Graph" to="UI" method="sig_GraphButtonPressed"]
+[connection signal="pressed" from="UI/Random" to="UI" method="sig_RandomButtonPressed"]
