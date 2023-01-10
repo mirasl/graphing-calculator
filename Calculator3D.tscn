@@ -130,6 +130,7 @@ theme = ExtResource( 6 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 placeholder_text = "[Enter Equation Here]"
 caret_blink = true
+caret_blink_speed = 0.4
 
 [node name="Label" type="Label" parent="UI"]
 margin_left = 12.0
@@ -219,3 +220,4 @@ text = "Random"
 [connection signal="GetCameraPosition" from="Gridlines" to="." method="sig_GetCameraPosition"]
 [connection signal="Graph" from="UI" to="." method="sig_Graph"]
 [connection signal="pressed" from="UI/Button" to="UI" method="sig_GraphButtonPressed"]
+[connection signal="pressed" from="UI/Button2" to="UI" method="sig_RandomButtonPressed"]
