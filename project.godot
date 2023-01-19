@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Graphing Calculator"
-run/main_scene="res://Calculator2D.tscn"
+run/main_scene="res://Calculator3D.tscn"
 config/icon="res://icon.png"
 
 [display]

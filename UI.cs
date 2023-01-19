@@ -9,6 +9,8 @@ public class UI : Control
     private bool lineEditFocused = false;
     private int lastRandom = 0;
 
+    // List of equations which are randomly selected when "Random" button is
+    // clicked
     string[] sampleEquations = new string[] {
         "sin(cos(x + t) + (y + t)/2)",
         "sin(x + t) - sin(y + t)",
@@ -62,7 +64,7 @@ public class UI : Control
     public void sig_RandomButtonPressed()
     {
         GetNode<Button>("Random").ReleaseFocus();
-        
+
         // Guarentees next random graph is different than the last:
         int random = (int)(GD.Randf() * sampleEquations.Length);
         while (random == lastRandom) 
@@ -74,5 +76,10 @@ public class UI : Control
         GetNode<LineEdit>("Equation").Text = sampleEquations[(int)(GD.Randf() *
                 sampleEquations.Length)];
         sig_GraphButtonPressed();
+    }
+
+    public void sig_GuideButtonPressed()
+    {
+        GetNode<WindowDialog>("WindowDialog").Popup_();
     }
 }

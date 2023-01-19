@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://CameraPivot.cs" type="Script" id=1]
 [ext_resource path="res://Line3D.cs" type="Script" id=2]
@@ -26,6 +26,9 @@ ambient_light_color = Color( 1, 1, 1, 1 )
 params_cull_mode = 2
 
 [sub_resource type="ArrayMesh" id=12]
+
+[sub_resource type="Theme" id=21]
+WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Theme" id=18]
 
@@ -113,6 +116,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 1
 script = ExtResource( 8 )
+
+[node name="WindowDialog" type="WindowDialog" parent="UI"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -673.5
+margin_top = -389.5
+margin_right = 673.5
+margin_bottom = 389.5
+theme = SubResource( 21 )
+window_title = "Guide/Documentation"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/WindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/WindowDialog/MarginContainer"]
+margin_right = 1327.0
+margin_bottom = 759.0
+theme = ExtResource( 6 )
+text = "*to get started quickly and see the graph in action, use the RANDOM button to generate a sample graph!
+
+CONTROLS:
+Arrow keys === Orbit camera
+Shift + arrow keys === Pan left, right, up, down
+Shift + ctrl + up/down arrow keys === Pan forwards and backwards
+
+EQUATION:
+Type an equation into the box to graph it. Your equation MUST follow a specific syntax:
+- use \"+\", \"-\", \"*\", and \"/\" for operators.
+- use \"sin\", \"cos\", and \"tan\" for trigonometric functions (csc, sec, and cot can be achieved by dividing 1 by sin, cos, and tan, respectively). You do not need parenthesis if the input is a single value, but use parenthesis for inputting expressions (i.e. \"sin(x + 1)\").
+- VARIABLES: This graphing application graphs expressions in terms of Z, with Z being the up/down axis. This is similar to a TI-8X's \"y=\" graph functionality. As of right now, you cannot manipulate the Z variable (i.e. Z^2 = x + y). 
+
+There are three variables at your disposal:
+	x: the value of the point on the x-axis
+	y: the value of the point on the y-axis
+	t: time, counted in seconds. This variable continuously increases forever (well, until the computer runs out of space), so to have an oscilating back-and-forth time value, use sin(t) or cos(t).
+
+- MAJOR LIMITATIONS: Negative numbers and decimals currently do not have functionality. For an equivalent of \"-n\", use \"(0 - n)\". For decimal-like values, just use fractions for now (i.e. 0.15 = (15/100)). Don't worry, Pythagoreas would be proud!!
+
+PRECISION:
+When an equation is graphed, a mesh is laid down as a collection of points. The amount of points that can be graphed depends on your computer's processing power, and is controlled using the PRECISION slider.
+
+Higher precision = many points, may not function on slower hardware
+Lower precision = less points, easily runnable on slower hardware
+
+SIZE:
+The amount of space taken up by the graph is denoted by the SIZE variable. You should never need a size greater than 15 (any graph can be reduced in size by dividing x and y by a constant).
+"
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
 anchor_bottom = 1.0
@@ -219,8 +277,16 @@ custom_styles/hover = SubResource( 20 )
 custom_styles/normal = SubResource( 17 )
 text = "Random"
 
+[node name="Guide" type="Button" parent="UI"]
+margin_left = 9.0
+margin_top = 128.0
+margin_right = 96.0
+margin_bottom = 148.0
+text = "Guide"
+
 [connection signal="GetCameraPosition" from="Gridlines" to="." method="sig_GetCameraPosition"]
 [connection signal="Graph" from="UI" to="." method="sig_Graph"]
 [connection signal="SetLineEditFocus" from="UI" to="." method="sig_SetLineEditFocus"]
 [connection signal="pressed" from="UI/Graph" to="UI" method="sig_GraphButtonPressed"]
 [connection signal="pressed" from="UI/Random" to="UI" method="sig_RandomButtonPressed"]
+[connection signal="pressed" from="UI/Guide" to="UI" method="sig_GuideButtonPressed"]
