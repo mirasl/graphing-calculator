@@ -25,7 +25,7 @@ public class Graph : MeshInstance
 		ig = GetNode<ImmediateGeometry>("ImmediateGeometry");
 		st = new SurfaceTool();
 
-		e = interpret("sin(x + t) - sin(y + t)");
+		//e = interpret("sin(x + t) - sin(y + t)");
 		//DrawGraph(new Vector2(15, 15), 0.5f);
 	}
 
@@ -107,6 +107,8 @@ public class Graph : MeshInstance
 			String s = strList[i];
 			if (float.TryParse(s, out floatS)) {
 				flatElements.Add(new Value(float.Parse(s)));
+			} else if (s.Equals(".")) {
+				flatElements.Add(new Point(false));
 			} else if (s.Equals("+")) {
 				flatElements.Add(new Add(false));
 			} else if (s.Equals("-")) {
@@ -200,9 +202,9 @@ public class Graph : MeshInstance
 			}
 		}
 		output.Add(current);
-		//foreach (String s in output) {
-			//GD.Print(s);
-		//}
+//		foreach (String s in output) {
+//			GD.Print(s);
+//		}
 		return output;
 	}
 	
@@ -228,6 +230,17 @@ public class Graph : MeshInstance
 					castE.setX(g);
 					input.RemoveRange(i+1, j-i-1);
 				}
+			}
+		}
+		for (int i = 0; i < input.Count; i++) {
+			Element e = input[i];
+			if (e is Point) {
+				Operator castE = (Operator) e;
+				castE.setY(input[i+1]);
+				input.RemoveAt(i+1);
+				castE.setX(input[i-1]);
+				input.RemoveAt(i-1);
+				i--;
 			}
 		}
 		for (int i = 0; i < input.Count; i++) {
@@ -266,15 +279,22 @@ public class Graph : MeshInstance
 				Operator castE = (Operator) e;
 				castE.setY(input[i+1]);
 				input.RemoveAt(i+1);
-				castE.setX(input[i-1]);
-				input.RemoveAt(i-1);
-				i--;
+				if (i-1>=0) {
+					if (input[i-1].full()) {
+						castE.setX(input[i-1]);
+						input.RemoveAt(i-1);
+						i--;
+					}
+				}
+				if (!castE.full()) {
+					castE.setX(new Value(0));
+				}
 			}
 		}
 		if (input.Count > 1) {
+			//return new X();
 			throw new Exception("PEMDAS failed, check for extra operators.");
 		}
-		//GD.Print(input[0].type);
 		return input[0];
 	}
 }
@@ -286,6 +306,7 @@ public abstract class Element {
 		type = typeIn;
 	}
 	
+	abstract public bool full();
 	abstract public float run();
 }
 
@@ -301,6 +322,10 @@ public class Value : Element {
 		return a;
 	}
 	
+	override public bool full() {
+		return true;
+	}
+	
 	public float testMethod() {
 		return Graph.t;
 	}
@@ -308,6 +333,10 @@ public class Value : Element {
 
 public class X : Element {
 	public X() : base("x") {
+	}
+	
+	override public bool full() {
+		return true;
 	}
 	
 	override public float run() {
@@ -319,6 +348,10 @@ public class Y : Element {
 	public Y() : base("y") {
 	}
 	
+	override public bool full() {
+		return true;
+	}
+	
 	override public float run() {
 		return Graph.y;
 	}
@@ -328,6 +361,10 @@ public class T : Element {
 	public T() : base("t") {
 	}
 	
+	override public bool full() {
+		return true;
+	}
+	
 	override public float run() {
 		return Graph.t;
 	}
@@ -335,6 +372,11 @@ public class T : Element {
 
 public class Paren : Operator {
 	public Paren(String typeIn) : base(typeIn, false) {
+		a = null;
+	}
+	
+	override public bool full() {
+		return !(a is null);
 	}
 	
 	override public float run() {
@@ -349,6 +391,11 @@ abstract public class Operator : Element {
 	
 	public Operator(String typeIn, bool inverseIn) : base(typeIn) {
 		inverse = inverseIn;
+		a = null;
+	}
+	
+	override public bool full() {
+		return !(a is null);
 	}
 	
 	public void setX(Element aIn) {
@@ -357,6 +404,25 @@ abstract public class Operator : Element {
 	
 	public void setY(Element bIn) {
 		b = bIn;
+	}
+}
+
+public class Point : Operator {
+	public Point(bool inverseIn) : base("add", inverseIn) {
+	}
+	
+	override public float run() {
+		float bVal = b.run();
+		float aVal = a.run();
+		while (bVal > 1) {
+			bVal = bVal/10;
+		}
+		if (aVal >= 0) {
+			return aVal+bVal;
+		} else {
+			return aVal-bVal;
+		}
+		
 	}
 }
 
