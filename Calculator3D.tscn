@@ -892,8 +892,6 @@ There are three variables at your disposal:
 	y: the value of the point on the y-axis
 	t: time, counted in seconds. This variable continuously increases forever (well, until the computer runs out of space), so to have an oscilating back-and-forth time value, use sin(t) or cos(t).
 
-- MAJOR LIMITATIONS: Negative numbers and decimals currently do not have functionality. For an equivalent of \"-n\", use \"(0 - n)\". For decimal-like values, just use fractions for now (i.e. 0.15 = (15/100)). Don't worry, Pythagoreas would be proud!!
-
 PRECISION:
 When an equation is graphed, a mesh is laid down as a collection of points. The amount of points that can be graphed depends on your computer's processing power, and is controlled using the PRECISION slider.
 
