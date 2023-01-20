@@ -42,11 +42,11 @@ public class Calculator3D : Spatial
 		GetNode<CameraPivot>("CameraPivot").Disabled = focused;
 	}
 
-    public override void _PhysicsProcess(float delta)
-    {
-        if (animated)
+	public override void _PhysicsProcess(float delta)
+	{
+		if (animated)
 		{
 			g.DrawAnimatedGraph(new Vector2(size, size), precisionPercent);
 		}
-    }
+	}
 }
