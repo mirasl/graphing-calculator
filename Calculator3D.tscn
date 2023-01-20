@@ -205,6 +205,14 @@ modulate = Color( 1, 0, 0, 1 )
 text = "15"
 font = SubResource( 22 )
 
+[node name="X" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.31665, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "x"
+font = SubResource( 22 )
+
 [node name="-15" type="Label3D" parent="Gridlines/XAxis/Numbers"]
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -14.9767, 0.110051, -0.0118208 )
 billboard = 1
@@ -325,279 +333,37 @@ modulate = Color( 1, 0, 0, 1 )
 text = "-1"
 font = SubResource( 22 )
 
-[node name="YAxis" type="ImmediateGeometry" parent="Gridlines"]
+[node name="ZAxis" type="ImmediateGeometry" parent="Gridlines"]
 material_override = SubResource( 10 )
 script = ExtResource( 2 )
 Vertex1 = Vector3( 0, -200, 0 )
 Vertex2 = Vector3( 0, 200, 0 )
 color = Color( 0.54902, 0.960784, 0.266667, 1 )
 
-[node name="Numbers" type="Spatial" parent="Gridlines/YAxis"]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="1" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.987024, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "1"
-font = SubResource( 22 )
-
-[node name="2" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 1.97416, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "2"
-font = SubResource( 22 )
-
-[node name="3" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 3.01233, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "3"
-font = SubResource( 22 )
-
-[node name="4" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 4.03955, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "4"
-font = SubResource( 22 )
-
-[node name="5" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.08586, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "5"
-font = SubResource( 22 )
-
-[node name="6" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.9904, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "6"
-font = SubResource( 22 )
-
-[node name="7" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 6.95358, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "7"
-font = SubResource( 22 )
-
-[node name="8" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 7.99144, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "8"
-font = SubResource( 22 )
-
-[node name="9" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 9.01745, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "9"
-font = SubResource( 22 )
-
-[node name="10" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 10.0306, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "10"
-font = SubResource( 22 )
-
-[node name="11" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 11.069, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "11"
-font = SubResource( 22 )
-
-[node name="12" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 12.0439, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "12"
-font = SubResource( 22 )
-
-[node name="13" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 13.0046, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "13"
-font = SubResource( 22 )
-
-[node name="14" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 14.0822, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "14"
-font = SubResource( 22 )
-
-[node name="15" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 15.0041, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "15"
-font = SubResource( 22 )
-
-[node name="-15" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -14.9767, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-15"
-font = SubResource( 22 )
-
-[node name="-14" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -13.9896, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-14"
-font = SubResource( 22 )
-
-[node name="-13" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -12.9514, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-13"
-font = SubResource( 22 )
-
-[node name="-12" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -11.9242, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-12"
-font = SubResource( 22 )
-
-[node name="-11" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -10.8779, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-11"
-font = SubResource( 22 )
-
-[node name="-10" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.9733, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-10"
-font = SubResource( 22 )
-
-[node name="-9" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.01013, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-9"
-font = SubResource( 22 )
-
-[node name="-8" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -7.97226, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-8"
-font = SubResource( 22 )
-
-[node name="-7" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -6.94626, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-7"
-font = SubResource( 22 )
-
-[node name="-6" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -5.93309, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-6"
-font = SubResource( 22 )
-
-[node name="-5" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -4.89471, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-5"
-font = SubResource( 22 )
-
-[node name="-4" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -3.91984, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-4"
-font = SubResource( 22 )
-
-[node name="-3" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -2.95911, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-3"
-font = SubResource( 22 )
-
-[node name="-2" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -1.88152, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-2"
-font = SubResource( 22 )
-
-[node name="-1" type="Label3D" parent="Gridlines/YAxis/Numbers"]
-transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.959611, 0.110051, -0.0118208 )
-billboard = 1
-fixed_size = true
-modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
-text = "-1"
-font = SubResource( 22 )
-
-[node name="ZAxis" type="ImmediateGeometry" parent="Gridlines"]
-material_override = SubResource( 11 )
-script = ExtResource( 2 )
-Vertex1 = Vector3( 0, 0, -200 )
-Vertex2 = Vector3( 0, 0, 200 )
-color = Color( 0.454902, 0.733333, 0.917647, 1 )
-
 [node name="Numbers" type="Spatial" parent="Gridlines/ZAxis"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="1" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.987024, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "1"
+font = SubResource( 22 )
+
+[node name="z" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.375818, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "z"
 font = SubResource( 22 )
 
 [node name="2" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 1.97416, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "2"
 font = SubResource( 22 )
 
@@ -605,7 +371,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 3.01233, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "3"
 font = SubResource( 22 )
 
@@ -613,7 +379,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 4.03955, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "4"
 font = SubResource( 22 )
 
@@ -621,7 +387,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.08586, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "5"
 font = SubResource( 22 )
 
@@ -629,7 +395,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.9904, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "6"
 font = SubResource( 22 )
 
@@ -637,7 +403,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 6.95358, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "7"
 font = SubResource( 22 )
 
@@ -645,7 +411,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 7.99144, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "8"
 font = SubResource( 22 )
 
@@ -653,7 +419,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 9.01745, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "9"
 font = SubResource( 22 )
 
@@ -661,7 +427,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 10.0306, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "10"
 font = SubResource( 22 )
 
@@ -669,7 +435,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 11.069, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "11"
 font = SubResource( 22 )
 
@@ -677,7 +443,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 12.0439, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "12"
 font = SubResource( 22 )
 
@@ -685,7 +451,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 13.0046, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "13"
 font = SubResource( 22 )
 
@@ -693,7 +459,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 14.0822, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "14"
 font = SubResource( 22 )
 
@@ -701,7 +467,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 15.0041, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "15"
 font = SubResource( 22 )
 
@@ -709,7 +475,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -14.9767, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-15"
 font = SubResource( 22 )
 
@@ -717,7 +483,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -13.9896, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-14"
 font = SubResource( 22 )
 
@@ -725,7 +491,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -12.9514, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-13"
 font = SubResource( 22 )
 
@@ -733,7 +499,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -11.9242, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-12"
 font = SubResource( 22 )
 
@@ -741,7 +507,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -10.8779, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-11"
 font = SubResource( 22 )
 
@@ -749,7 +515,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.9733, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-10"
 font = SubResource( 22 )
 
@@ -757,7 +523,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.01013, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-9"
 font = SubResource( 22 )
 
@@ -765,7 +531,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -7.97226, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-8"
 font = SubResource( 22 )
 
@@ -773,7 +539,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -6.94626, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-7"
 font = SubResource( 22 )
 
@@ -781,7 +547,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -5.93309, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-6"
 font = SubResource( 22 )
 
@@ -789,7 +555,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -4.89471, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-5"
 font = SubResource( 22 )
 
@@ -797,7 +563,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -3.91984, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-4"
 font = SubResource( 22 )
 
@@ -805,7 +571,7 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -2.95911, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-3"
 font = SubResource( 22 )
 
@@ -813,11 +579,270 @@ font = SubResource( 22 )
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -1.88152, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
-modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
 text = "-2"
 font = SubResource( 22 )
 
 [node name="-1" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.959611, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-1"
+font = SubResource( 22 )
+
+[node name="YAxis" type="ImmediateGeometry" parent="Gridlines"]
+material_override = SubResource( 11 )
+script = ExtResource( 2 )
+Vertex1 = Vector3( 0, 0, -200 )
+Vertex2 = Vector3( 0, 0, 200 )
+color = Color( 0.454902, 0.733333, 0.917647, 1 )
+
+[node name="Numbers" type="Spatial" parent="Gridlines/YAxis"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="1" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.987024, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "1"
+font = SubResource( 22 )
+
+[node name="y" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.197955, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "y
+"
+font = SubResource( 22 )
+
+[node name="2" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 1.97416, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "2"
+font = SubResource( 22 )
+
+[node name="3" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 3.01233, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "3"
+font = SubResource( 22 )
+
+[node name="4" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 4.03955, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "4"
+font = SubResource( 22 )
+
+[node name="5" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.08586, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "5"
+font = SubResource( 22 )
+
+[node name="6" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.9904, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "6"
+font = SubResource( 22 )
+
+[node name="7" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 6.95358, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "7"
+font = SubResource( 22 )
+
+[node name="8" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 7.99144, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "8"
+font = SubResource( 22 )
+
+[node name="9" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 9.01745, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "9"
+font = SubResource( 22 )
+
+[node name="10" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 10.0306, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "10"
+font = SubResource( 22 )
+
+[node name="11" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 11.069, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "11"
+font = SubResource( 22 )
+
+[node name="12" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 12.0439, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "12"
+font = SubResource( 22 )
+
+[node name="13" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 13.0046, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "13"
+font = SubResource( 22 )
+
+[node name="14" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 14.0822, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "14"
+font = SubResource( 22 )
+
+[node name="15" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 15.0041, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "15"
+font = SubResource( 22 )
+
+[node name="-15" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -14.9767, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-15"
+font = SubResource( 22 )
+
+[node name="-14" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -13.9896, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-14"
+font = SubResource( 22 )
+
+[node name="-13" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -12.9514, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-13"
+font = SubResource( 22 )
+
+[node name="-12" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -11.9242, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-12"
+font = SubResource( 22 )
+
+[node name="-11" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -10.8779, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-11"
+font = SubResource( 22 )
+
+[node name="-10" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.9733, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-10"
+font = SubResource( 22 )
+
+[node name="-9" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.01013, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-9"
+font = SubResource( 22 )
+
+[node name="-8" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -7.97226, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-8"
+font = SubResource( 22 )
+
+[node name="-7" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -6.94626, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-7"
+font = SubResource( 22 )
+
+[node name="-6" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -5.93309, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-6"
+font = SubResource( 22 )
+
+[node name="-5" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -4.89471, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-5"
+font = SubResource( 22 )
+
+[node name="-4" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -3.91984, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-4"
+font = SubResource( 22 )
+
+[node name="-3" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -2.95911, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-3"
+font = SubResource( 22 )
+
+[node name="-2" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -1.88152, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-2"
+font = SubResource( 22 )
+
+[node name="-1" type="Label3D" parent="Gridlines/YAxis/Numbers"]
 transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.959611, 0.110051, -0.0118208 )
 billboard = 1
 fixed_size = true
