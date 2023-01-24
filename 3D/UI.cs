@@ -72,7 +72,8 @@ public class UI : Control
             random = (int)(GD.Randf() * sampleEquations.Length);
         }
         lastRandom = random;
-
+        
+        GD.Randomize();
         GetNode<LineEdit>("Equation").Text = sampleEquations[(int)(GD.Randf() *
                 sampleEquations.Length)];
         sig_GraphButtonPressed();
