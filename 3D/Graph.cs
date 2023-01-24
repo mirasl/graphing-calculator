@@ -165,6 +165,13 @@ public class Graph : MeshInstance
 				} else {
 					i--;
 				}
+			} else if (s.Equals("l")) {
+				i++;
+				if (strList[i].Equals("n")) {
+					flatElements.Add(new Ln(false));
+				} else {
+					i--;
+				}
 			}
 		}
 		foreach (Element e in flatElements) {
@@ -245,7 +252,7 @@ public class Graph : MeshInstance
 		}
 		for (int i = 0; i < input.Count; i++) {
 			Element e = input[i];
-			if (e is Sine || e is Cosine || e is Tangent) {
+			if (e is Sine || e is Cosine || e is Tangent || e is Ln) {
 				Operator castE = (Operator) e;
 				castE.setX(input[i+1]);
 				input.RemoveAt(i+1);
@@ -504,6 +511,20 @@ public class Tangent : Operator {
 			return Mathf.Tan(a.run());
 		} else {
 			return Mathf.Tan(a.run());
+		}
+		
+	}
+}
+
+public class Ln : Operator {
+	public Ln(bool inverseIn) : base("ln", inverseIn) {
+	}
+	
+	override public float run() {
+		if (!inverse) {
+			return Mathf.Log(a.run());
+		} else {
+			return Mathf.Log(a.run());
 		}
 		
 	}
