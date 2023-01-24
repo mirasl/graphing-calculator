@@ -1,20 +1,20 @@
 [gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://CameraPivot.cs" type="Script" id=1]
-[ext_resource path="res://Line3D.cs" type="Script" id=2]
-[ext_resource path="res://Gridlines.cs" type="Script" id=3]
-[ext_resource path="res://Calculator3D.cs" type="Script" id=4]
-[ext_resource path="res://Graph.cs" type="Script" id=5]
-[ext_resource path="res://RegularText.tres" type="Theme" id=6]
-[ext_resource path="res://Inter-Regular.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://UI.cs" type="Script" id=8]
+[ext_resource path="res://3D/CameraPivot.cs" type="Script" id=1]
+[ext_resource path="res://3D/Line3D.cs" type="Script" id=2]
+[ext_resource path="res://3D/Graph.cs" type="Script" id=3]
+[ext_resource path="res://3D/UI.cs" type="Script" id=4]
+[ext_resource path="res://RegularText.tres" type="Theme" id=5]
+[ext_resource path="res://3D/Calculator3D.cs" type="Script" id=6]
+[ext_resource path="res://3D/Gridlines.cs" type="Script" id=7]
+[ext_resource path="res://Assets/Inter-Regular.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="SpatialMaterial" id=8]
 vertex_color_use_as_albedo = true
 
 [sub_resource type="DynamicFont" id=22]
 size = 80
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="SpatialMaterial" id=10]
 vertex_color_use_as_albedo = true
@@ -37,7 +37,7 @@ WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
 [sub_resource type="Theme" id=18]
 
 [sub_resource type="DynamicFont" id=14]
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="Theme" id=15]
 default_font = SubResource( 14 )
@@ -71,10 +71,10 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [node name="Calculator3D" type="Spatial"]
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 
 [node name="Gridlines" type="Spatial" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 7 )
 
 [node name="XAxis" type="ImmediateGeometry" parent="Gridlines"]
 material_override = SubResource( 8 )
@@ -864,7 +864,7 @@ environment = SubResource( 7 )
 [node name="Graph" type="MeshInstance" parent="."]
 material_override = SubResource( 13 )
 mesh = SubResource( 12 )
-script = ExtResource( 5 )
+script = ExtResource( 3 )
 
 [node name="ImmediateGeometry" type="ImmediateGeometry" parent="Graph"]
 
@@ -872,7 +872,7 @@ script = ExtResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 1
-script = ExtResource( 8 )
+script = ExtResource( 4 )
 
 [node name="WindowDialog" type="WindowDialog" parent="UI"]
 visible = true
@@ -898,7 +898,7 @@ margin_bottom = -10.0
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/WindowDialog/MarginContainer"]
 margin_right = 1327.0
 margin_bottom = 759.0
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 text = "*to get started quickly and see the graph in action, use the RANDOM button to generate a sample graph!
 
 CONTROLS:
@@ -940,7 +940,7 @@ margin_left = 117.0
 margin_top = 11.0
 margin_right = 524.0
 margin_bottom = 53.0
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 placeholder_text = "[Enter Equation Here]"
 caret_blink = true
@@ -951,7 +951,7 @@ margin_left = 12.0
 margin_top = 15.0
 margin_right = 176.0
 margin_bottom = 64.0
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 text = "z(x, y) = "
 
 [node name="HSlider" type="HSlider" parent="UI"]
@@ -990,7 +990,7 @@ margin_left = 18.0
 margin_top = 72.0
 margin_right = 134.0
 margin_bottom = 104.0
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 text = "Precision:"
 
 [node name="Label5" type="Label" parent="UI"]
@@ -998,7 +998,7 @@ margin_left = 356.0
 margin_top = 72.0
 margin_right = 472.0
 margin_bottom = 104.0
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 text = "Size:"
 
 [node name="Size" type="LineEdit" parent="UI"]
@@ -1006,7 +1006,7 @@ margin_left = 425.0
 margin_top = 67.0
 margin_right = 519.0
 margin_bottom = 109.0
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 placeholder_text = "15"
 
 [node name="Graph" type="Button" parent="UI"]
@@ -1015,7 +1015,7 @@ margin_top = 13.0
 margin_right = 682.0
 margin_bottom = 50.0
 focus_mode = 1
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_styles/hover = SubResource( 19 )
 custom_styles/normal = SubResource( 16 )
@@ -1026,7 +1026,7 @@ margin_left = 535.0
 margin_top = 69.0
 margin_right = 682.0
 margin_bottom = 107.0
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_styles/hover = SubResource( 20 )
 custom_styles/normal = SubResource( 17 )
@@ -1037,7 +1037,7 @@ margin_left = 9.0
 margin_top = 128.0
 margin_right = 96.0
 margin_bottom = 148.0
-theme = ExtResource( 6 )
+theme = ExtResource( 5 )
 text = "Guide"
 
 [connection signal="GetCameraPosition" from="Gridlines" to="." method="sig_GetCameraPosition"]

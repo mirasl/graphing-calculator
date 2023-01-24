@@ -18,7 +18,7 @@ public class Gridlines : Spatial
 
 	public override void _Ready()
 	{
-		line3dScene = GD.Load<PackedScene>("res://Line3D.tscn");
+		line3dScene = GD.Load<PackedScene>("res://3D/Line3D.tscn");
 
 		gridlines.Add(new ArrayList());
 		gridlines.Add(new ArrayList());
