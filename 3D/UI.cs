@@ -48,7 +48,11 @@ public class UI : Control
 		"ln(x-sint)*ln(y+sint)"
 	};
 
-	public override void _PhysicsProcess(float delta)
+	/// <summary>
+	/// Handles current focus state of the Equation lineEdit each frame.
+	/// </summary>
+	/// <param name="delta">Time (s) between frames.</param>
+	public override void _Process(float delta)
 	{
 		LineEdit le = GetNode<LineEdit>("Equation");
 		if (le.HasFocus() != lineEditFocused)

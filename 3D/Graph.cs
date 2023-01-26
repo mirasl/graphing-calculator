@@ -64,12 +64,19 @@ public class Graph : MeshInstance
 	/// </summary>
 	float time = 0;
 
+	/// <summary>
+	/// Sets onready variables.
+	/// </summary>
 	public override void _Ready()
 	{
 		ig = GetNode<ImmediateGeometry>("ImmediateGeometry");
 		st = new SurfaceTool();
 	}
 
+	/// <summary>
+	/// Updates time value each frame.
+	/// </summary>
+	/// <param name="delta">Time (s) between frames.</param>
 	public override void _PhysicsProcess(float delta)
 	{
 		Graph.t += delta;

@@ -28,6 +28,10 @@ public class Gridlines : Spatial
 	/// </summary>
 	private PackedScene line3dScene;
 
+	/// <summary>
+	/// Sets onready variables and calls DrawGridlines() to set up the graph
+	/// space.
+	/// </summary>
 	public override void _Ready()
 	{
 		line3dScene = GD.Load<PackedScene>("res://3D/Line3D.tscn");
@@ -37,7 +41,15 @@ public class Gridlines : Spatial
 		
 		interval = 1;
 		
-		// draw strong lines
+		DrawGridlines();
+	}
+
+	/// <summary>
+	/// Draws a series of gray lines in a criss-cross pattern across the
+	/// xy (xz in Godot engine) plane.
+	/// </summary>
+	private void DrawGridlines()
+	{
 		for (int i = -LINE_NUMBER; i <= LINE_NUMBER; i++)
 		{
 			if (i == 0)

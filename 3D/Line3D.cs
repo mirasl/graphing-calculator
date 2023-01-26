@@ -23,6 +23,9 @@ public class Line3D : ImmediateGeometry
 	/// </summary>
 	[Export] public Color color;
 	
+	/// <summary>
+	/// Draws the line with the given vertices/color upon scene start.
+	/// </summary>
 	public override void _Ready()
 	{
 		Clear();

@@ -28,6 +28,10 @@ public class CameraPivot : Spatial
     /// </summary>
     public bool Disabled = false;
 
+    /// <summary>
+    /// Runs through camera controls each frame to account for user input.
+    /// </summary>
+    /// <param name="delta">Time (s) between frames</param>
     public override void _PhysicsProcess(float delta)
     {
         if (!Disabled)

@@ -65,6 +65,11 @@ public class Calculator3D : Spatial
 		GetNode<CameraPivot>("CameraPivot").Disabled = focused;
 	}
 
+	/// <summary>
+	/// If graph contains animated features, continuously updates the graph
+	/// each frame to respond to the changing time value.
+	/// </summary>
+	/// <param name="delta">Time (s) between frames</param>
 	public override void _PhysicsProcess(float delta)
 	{
 		if (animated)
