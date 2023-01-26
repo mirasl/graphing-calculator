@@ -1,16 +1,31 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Handles inputs given by the player, sending the user input data as signals
+/// to then be interpreted by the calculator's mathematical backend interpreter.
+/// </summary>
 public class UI : Control
 {
 	[Signal] delegate void Graph(string expression, float size, float p);
 	[Signal] delegate void SetLineEditFocus(bool state);
 
+	/// <summary>
+	/// The current focus state of the Equation lineEdit.
+	/// </summary>
 	private bool lineEditFocused = false;
+
+	/// <summary>
+	/// The last random sampleEquation index generated (used to ensure the
+	/// random button always generates a new response).
+	/// </summary>
 	private int lastRandom = 0;
 
-	// List of equations which are randomly selected when "Random" button is
-	// clicked
+	/// <summary>
+	/// List of sample equations, one of which is randomly selected when the 
+	/// "random" button is pressed.
+	/// </summary>
+	/// <value>The list of the sample equations.</value>
 	string[] sampleEquations = new string[] {
 		"sin(cos(x + t) + (y + t)/2)",
 		"sin(x + t) - sin(y + t)",
@@ -43,6 +58,11 @@ public class UI : Control
 		}
 	}
 
+	/// <summary>
+	/// Called when the "Graph" button is pressed; interprets current user-
+	/// inputted data and sends the "Graph" signal to be mathematically
+	/// interpreted by the "backend."
+	/// </summary>
 	public void sig_GraphButtonPressed()
 	{
 		GetNode<Button>("Graph").ReleaseFocus();
@@ -63,6 +83,11 @@ public class UI : Control
 				(float)GetNode<HSlider>("HSlider").Value);
 	}
 
+	/// <summary>
+	/// Passes a random equation from the sampleEquations list into the 
+	/// equation lineEdit, then simulates a "Graph" button press to immediately
+	/// graph the randomly generated equation.
+	/// </summary>
 	public void sig_RandomButtonPressed()
 	{
 		GetNode<Button>("Random").ReleaseFocus();
@@ -81,6 +106,9 @@ public class UI : Control
 		sig_GraphButtonPressed();
 	}
 
+	/// <summary>
+	/// Shows the Guide popup.
+	/// </summary>
 	public void sig_GuideButtonPressed()
 	{
 		GetNode<WindowDialog>("WindowDialog").Popup_();

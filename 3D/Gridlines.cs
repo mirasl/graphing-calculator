@@ -2,18 +2,30 @@ using Godot;
 using System;
 using System.Collections;
 
+/// <summary>
+/// Draws a grid of lines denoting graphical units on the xy-plane.
+/// </summary>
 public class Gridlines : Spatial
 {
-	[Signal] delegate Transform GetCameraPosition();
-
+	/// <summary>
+	/// The number of gridlines to draw starting from the origin in all four
+	/// directions.
+	/// </summary>
 	const int LINE_NUMBER = 15;
 
-	public Vector3 GlobalCameraOrigin {set; get;}
-
+	/// <summary>
+	/// ArrayList to be populated with each line object in the grid.
+	/// </summary>
 	private ArrayList gridlines = new ArrayList();
-	private int strongInterval;
-	private int thinInterval;
 
+	/// <summary>
+	/// Space (in meters) between each gridline.
+	/// </summary>
+	private int interval;
+
+	/// <summary>
+	/// Onready reference to res://3D/Line3D.tscn.
+	/// </summary>
 	private PackedScene line3dScene;
 
 	public override void _Ready()
@@ -23,8 +35,7 @@ public class Gridlines : Spatial
 		gridlines.Add(new ArrayList());
 		gridlines.Add(new ArrayList());
 		
-		EmitSignal("GetCameraPosition");
-		strongInterval = (int)Mathf.Pow(10, (int)(GlobalCameraOrigin.y / 5));
+		interval = 1;
 		
 		// draw strong lines
 		for (int i = -LINE_NUMBER; i <= LINE_NUMBER; i++)
@@ -33,11 +44,14 @@ public class Gridlines : Spatial
 			{
 				continue;
 			}
-			float grayscale = (float)((LINE_NUMBER*0.75f) - (Mathf.Abs(i) / 2)) / (float)LINE_NUMBER;
+			float grayscale = (float)((LINE_NUMBER*0.75f) - 
+					(Mathf.Abs(i) / 2)) / (float)LINE_NUMBER;
 
 			Line3D line = line3dScene.Instance<Line3D>();
-			line.Vertex1 = new Vector3(LINE_NUMBER*strongInterval, 0, i*strongInterval);
-			line.Vertex2 = new Vector3(-LINE_NUMBER*strongInterval, 0, i*strongInterval);
+			line.Vertex1 = new Vector3(LINE_NUMBER*interval, 0, 
+					i*interval);
+			line.Vertex2 = new Vector3(-LINE_NUMBER*interval, 0, 
+					i*interval);
 			line.color = new Color(grayscale, grayscale, grayscale);
 			AddChild(line);
 			((ArrayList)gridlines[0]).Add(line);
@@ -49,28 +63,17 @@ public class Gridlines : Spatial
 			{
 				continue;
 			}
-			float grayscale = (float)((LINE_NUMBER*0.75f) - (Mathf.Abs(i) / 2)) / (float)LINE_NUMBER;
+			float grayscale = (float)((LINE_NUMBER*0.75f) - 
+					(Mathf.Abs(i) / 2)) / (float)LINE_NUMBER;
 
 			Line3D line = line3dScene.Instance<Line3D>();
-			line.Vertex1 = new Vector3(i*strongInterval, 0, LINE_NUMBER*strongInterval);
-			line.Vertex2 = new Vector3(i*strongInterval, 0, -LINE_NUMBER*strongInterval);
+			line.Vertex1 = new Vector3(i*interval, 0, 
+					LINE_NUMBER*interval);
+			line.Vertex2 = new Vector3(i*interval, 0, 
+					-LINE_NUMBER*interval);
 			line.color = new Color(grayscale, grayscale, grayscale);
 			AddChild(line);
 			((ArrayList)gridlines[1]).Add(line);
 		}
 	}
-	// public override void _PhysicsProcess(float delta)
-	// {
-	//     foreach (Line3D line in (ArrayList)gridlines[0]) // gridlines which lie along x axis
-	//     {
-	//         if (Mathf.Abs(line.Vertex1.x - GlobalCameraOrigin.x) > strongInterval*LINE_NUMBER)
-	//         {
-
-	//         }
-	//     }
-	//     foreach (Line3D line in (ArrayList)gridlines[1]) // gridlines which lie along z axis
-	//     {
-
-	//     }
-	// }
 }

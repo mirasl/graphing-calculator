@@ -1,27 +1,46 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Controls top-level communication between UI and backend graph functionality.
+/// </summary>
 public class Calculator3D : Spatial
 {
-	bool animated = false;
-	Graph g;
+	/// <summary>
+	/// Whether or not the current graph is time-dependent, i.e. if it contains
+	/// the "t" variable 
+	/// </summary>
+	private bool animated = false;
 
-	float precisionPercent;
-	float size;
+	/// <summary>
+	/// Graph node which displays the graphed equation
+	/// </summary>
+	private Graph g;
 
-	public void sig_GetCameraPosition()
-	{
-		GetNode<Gridlines>("Gridlines").GlobalCameraOrigin = 
-				GetNode<Camera>("CameraPivot/Camera").GlobalTransform.origin;
-	}
+	/// <summary>
+	/// Concentration of graphed points within the given size variable.
+	/// Represented on a scale from 0 to 1.
+	/// </summary>
+	private float precisionPercent;
+
+	/// <summary>
+	/// Area of the xy-plane taken up by the graphed points.
+	/// </summary>
+	private float size;
 
 	public override void _Ready()
 	{
 		g = GetNode<Graph>("Graph");
-		//Graph("0", 10, 0.5f);
 	}
 
-	public void sig_Graph(string expression, float s = 15, float p = 0.66f) // sig_Graph() fix this in editor
+	/// <summary>
+	/// Passes variables into Graph.cs to graph the equation
+	/// </summary>
+	/// <param name="expression">The equation to be interpreted</param>
+	/// <param name="s">The size of the area graphed</param>
+	/// <param name="p">Precision (concentration of points graphed) on a scale 
+	/// 		from 0 to 1</param>
+	public void sig_Graph(string expression, float s = 15, float p = 0.66f)
 	{
 		g.ClearGraph();
 		g.e = g.interpret(expression);
@@ -37,6 +56,10 @@ public class Calculator3D : Spatial
 		}
 	}
 
+	/// <summary>
+	/// Locks or unlocks camera movement based on line edit focus state
+	/// </summary>
+	/// <param name="focused">LineEdit focus state</param>
 	public void sig_SetLineEditFocus(bool focused)
 	{
 		GetNode<CameraPivot>("CameraPivot").Disabled = focused;

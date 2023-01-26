@@ -5,45 +5,87 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
+/// <summary>
+/// Transforms multiple points on a MeshInstance to represent the 3D graph of an
+/// equation using x, y, and z variables. Accounts for both static graphs as
+/// well as animated graphs (graphs which utilize the "t" variable).
+/// </summary>
 public class Graph : MeshInstance
 {
+	/// <summary>
+	/// The current x value being iterated over.
+	/// </summary>
 	public static float x;
+
+	/// <summary>
+	/// The current y value being iterated over.
+	/// </summary>
 	public static float y;
+
+	/// <summary>
+	/// The current t value being iterated over.
+	/// </summary>
 	public static float t;
 
-	const int MAX_PRECISION = 500; // MAXIMUM
-	const int MAX_ANIMATION_PRECISION = 100; // MAXIMUM
+	/// <summary>
+	/// The maximum allowed precision value of the graph (multiplied by user-
+	/// inputted "precision percent" value to determine final precision).
+	/// </summary>
+	const int MAX_PRECISION = 500;
 
+	/// <summary>
+	/// The maximum allowed precision value of an animated graph (should be
+	/// lower than MAX_PRECISION as the points must be redrawn each frame, thus
+	/// much more processing power will be expended). Multiplied by user-
+	/// inputted "precision percent" value to determine final precision.
+	/// </summary>
+	const int MAX_ANIMATION_PRECISION = 100;
+
+	/// <summary>
+	/// The element object which will interpret the equation over each xy point
+	/// to form the shape of the graph.
+	/// </summary>
 	public Element e;
 
+	/// <summary>
+	/// Object which is manipulated to draw a static graph (does not need to
+	/// be redrawn each frame)
+	/// </summary>
 	SurfaceTool st;
+
+	/// <summary>
+	/// Object which is manipulated to draw an animated graph (redrawn each
+	/// frame)
+	/// </summary>
 	ImmediateGeometry ig;
+
+	/// <summary>
+	/// Represents time (in seconds) since this script was initiated
+	/// </summary>
 	float time = 0;
 
 	public override void _Ready()
 	{
 		ig = GetNode<ImmediateGeometry>("ImmediateGeometry");
 		st = new SurfaceTool();
-
-		//e = interpret("sin(x + t) - sin(y + t)");
-		//DrawGraph(new Vector2(15, 15), 0.5f);
 	}
 
 	public override void _PhysicsProcess(float delta)
 	{
 		Graph.t += delta;
-		
-		//DrawAnimatedGraph(new Vector2(15, 15), 70.0f);
 	}
 
+	/// <summary>
+	/// Draws a static graph as a collection of points over the given plane.
+	/// </summary>
+	/// <param name="size">Size of the xy-plane which is graphed over</param>
+	/// <param name="precisionPercent">Concentration of points within the space 
+	/// 		on a scale from 0 to 1, 1 being more concentrated.</param>
 	public void DrawGraph(Vector2 size, float precisionPercent)
 	{
 		precisionPercent = Mathf.Clamp(precisionPercent, 0, 1);
-		//GD.Print(precisionPercent);
 		int precision = (int)(precisionPercent * (float)MAX_PRECISION);
-		//GD.Print(precision);
 
-		//st.Clear();
 		st = new SurfaceTool();
 
 		st.Begin(Mesh.PrimitiveType.Lines);
@@ -66,6 +108,13 @@ public class Graph : MeshInstance
 		Mesh = m;
 	}
 	
+	/// <summary>
+	/// Draws an animated 3D graph as a collection of points over the given 
+	/// plane.
+	/// </summary>
+	/// <param name="size">Size of the xy-plane which is graphed over</param>
+	/// <param name="precisionPercent">Concentration of points within the space 
+	/// 		on a scale from 0 to 1, 1 being more concentrated.</param>
 	public void DrawAnimatedGraph(Vector2 size, float precisionPercent)
 	{
 		precisionPercent = Mathf.Clamp(precisionPercent, 0, 1);
@@ -92,11 +141,13 @@ public class Graph : MeshInstance
 		ig.End();
 	}
 
+	/// <summary>
+	/// Clears the current Mesh and SurfaceTool.
+	/// </summary>
 	public void ClearGraph()
 	{
 		st.Clear();
 		Mesh = null;
-		//ig = null;
 	}
 
 	public Element interpret(String input) {

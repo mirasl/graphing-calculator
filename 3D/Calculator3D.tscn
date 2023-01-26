@@ -1040,7 +1040,6 @@ margin_bottom = 148.0
 theme = ExtResource( 5 )
 text = "Guide"
 
-[connection signal="GetCameraPosition" from="Gridlines" to="." method="sig_GetCameraPosition"]
 [connection signal="Graph" from="UI" to="." method="sig_Graph"]
 [connection signal="SetLineEditFocus" from="UI" to="." method="sig_SetLineEditFocus"]
 [connection signal="pressed" from="UI/Graph" to="UI" method="sig_GraphButtonPressed"]
