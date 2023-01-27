@@ -70,7 +70,7 @@ public class Calculator3D : Spatial
 	/// each frame to respond to the changing time value.
 	/// </summary>
 	/// <param name="delta">Time (s) between frames</param>
-	public override void _PhysicsProcess(float delta)
+	public override void _Process(float delta)
 	{
 		if (animated)
 		{
