@@ -44,7 +44,13 @@ public class Calculator3D : Spatial
 	{
 		g.ClearGraph();
 		g.e = g.interpret(expression);
-		if (expression.Find("t") != -1)
+		string otherExpression = expression + "";
+		while (otherExpression.Find("tan") != -1)
+		{
+			otherExpression = otherExpression.Remove(
+					otherExpression.Find("tan"), 3);
+		}
+		if (otherExpression.Find("t") != -1)
 		{
 			animated = true;
 			precisionPercent = p;
