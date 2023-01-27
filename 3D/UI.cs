@@ -45,7 +45,8 @@ public class UI : Control
 		"cos(t)*x",
 		"((2)^2-(5-(x^2+y^2)^(1/2))^2)^(1/2) + x*sin(t) + y*cos(t)",
 		"(x^2+y^2)^(-1/2) * sin(t)",
-		"ln(x-sint)*ln(y+sint)"
+		"ln(x-sint)*ln(y+sint)",
+		"tant+sinx+siny"
 	};
 
 	/// <summary>

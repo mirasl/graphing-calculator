@@ -168,50 +168,47 @@ public class Graph : MeshInstance
 			if (float.TryParse(s, out floatS)) 
 			{
 				flatElements.Add(new Value(float.Parse(s)));
-			} 
+			}
 			else if (s.Equals(".")) 
 			{
 				flatElements.Add(new Point(false));
-			} 
-			else if (s.Equals("+")) {
+			}
+			else if (s.Equals("+"))
+			{
 				flatElements.Add(new Add(false));
-			} 
+			}
 			else if (s.Equals("-")) 
 			{
 				flatElements.Add(new Add(true));
-			} 
+			}
 			else if (s.Equals("*")) 
 			{
 				flatElements.Add(new Multiply(false));
-			} 
+			}
 			else if (s.Equals("/")) 
 			{
 				flatElements.Add(new Multiply(true));
-			} 
+			}
 			else if (s.Equals("^")) 
 			{
 				flatElements.Add(new Exponent(false));
-			} 
+			}
 			else if (s.Equals("x")) 
 			{
 				flatElements.Add(new X());
-			} 
+			}
 			else if (s.Equals("y")) 
 			{
 				flatElements.Add(new Y());
-			} 
-			else if (s.Equals("t")) 
-			{
-				flatElements.Add(new T());
-			} 
-			else if (s.Equals("(")) 
+			}
+			else if (s.Equals("("))
 			{
 				flatElements.Add(new Paren("open"));
-			} 
+			}
 			else if (s.Equals(")")) 
 			{
 				flatElements.Add(new Paren("close"));
-			} 
+			}
 			else if (s.Equals("s")) 
 			{
 				i++;
@@ -221,17 +218,17 @@ public class Graph : MeshInstance
 					if (strList[i].Equals("n")) 
 					{
 						flatElements.Add(new Sine(false));
-					} 
+					}
 					else 
 					{
 						i -= 2;
 					}
-				} 
+				}
 				else 
 				{
 					i--;
 				}
-			} 
+			}
 			else if (s.Equals("c")) 
 			{
 				i++;
@@ -241,50 +238,67 @@ public class Graph : MeshInstance
 					if (strList[i].Equals("s")) 
 					{
 						flatElements.Add(new Cosine(false));
-					} 
+					}
 					else 
 					{
 						i -= 2;
 					}
-				} 
+				}
 				else 
 				{
 					i--;
 				}
-			} 
-			else if (s.Equals("t")) 
+			}
+			else if (s.Equals("t"))
 			{
-				i++;
-				if (strList[i].Equals("a")) 
+				if (strList.Count < i+2)
+				{
+					flatElements.Add(new T());
+				}
+				else
 				{
 					i++;
-					if (strList[i].Equals("n")) 
+					if (strList[i].Equals("a"))
 					{
-						flatElements.Add(new Tangent(false));
-					} 
-					else 
-					{
-						i -= 2;
+						i++;
+						if (strList[i].Equals("n"))
+						{
+							flatElements.Add(new Tangent(false));
+						}
+						else
+						{
+							i -= 2;
+							flatElements.Add(new T());
+						}
 					}
-				} 
-				else 
-				{
-					i--;
+					else
+					{
+						i--;
+						flatElements.Add(new T());
+					}
 				}
-			} 
-			else if (s.Equals("l")) 
+			}
+			else if (s.Equals("t"))
+			{
+				flatElements.Add(new T());
+			}
+			else if (s.Equals("l"))
 			{
 				i++;
 				if (strList[i].Equals("n")) 
 				{
 					flatElements.Add(new Ln(false));
-				} 
+				}
 				else 
 				{
 					i--;
 				}
 			}
 		}
+//		foreach (Element e in flatElements)
+//		{
+//			GD.Print(e.type);
+//		}
 		Element tree = Pemdas(flatElements);
 		return tree;
 	}
@@ -296,7 +310,7 @@ public class Graph : MeshInstance
 		if (Char.IsDigit(input, 0)) 
 		{
 			type = "number";
-		} 
+		}
 		else 
 		{
 			type = "operator or variable";
@@ -310,14 +324,14 @@ public class Graph : MeshInstance
 				if (type.Equals("number")) 
 				{
 					current += input[i];
-				} 
+				}
 				else 
 				{
 					output.Add(current);
 					current = input[i].ToString();
 					type = "number";
 				}
-			} 
+			}
 			else 
 			{
 				output.Add(current);
@@ -349,7 +363,7 @@ public class Graph : MeshInstance
 							if (f.type.Equals("open")) 
 							{
 								parenCount++;
-							} 
+							}
 							else 
 							{
 								parenCount--;
@@ -599,7 +613,7 @@ public class Point : Operator
 		if (aVal >= 0) 
 		{
 			return aVal+bVal;
-		} 
+		}
 		else 
 		{
 			return aVal-bVal;
@@ -620,7 +634,7 @@ public class Add : Operator
 		if (!inverse) 
 		{
 			return a.run()+b.run();
-		} 
+		}
 		else 
 		{
 			return a.run()-b.run();
@@ -641,7 +655,7 @@ public class Multiply : Operator
 		if (!inverse) 
 		{
 			return a.run()*b.run();
-		} 
+		}
 		else 
 		{
 			return a.run()/b.run();
@@ -661,7 +675,7 @@ public class Exponent : Operator
 		if (!inverse) 
 		{
 			return Mathf.Pow(a.run(), b.run());
-		} 
+		}
 		else 
 		{
 			return Mathf.Pow(a.run(), 1/b.run());
@@ -681,7 +695,7 @@ public class Sine : Operator
 		if (!inverse) 
 		{
 			return Mathf.Sin(a.run());
-		} 
+		}
 		else 
 		{
 			return Mathf.Sin(a.run());
@@ -702,7 +716,7 @@ public class Cosine : Operator
 		if (!inverse) 
 		{
 			return Mathf.Cos(a.run());
-		} 
+		}
 		else 
 		{
 			return Mathf.Cos(a.run());
@@ -722,7 +736,7 @@ public class Tangent : Operator
 		if (!inverse) 
 		{
 			return Mathf.Tan(a.run());
-		} 
+		}
 		else 
 		{
 			return Mathf.Tan(a.run());
@@ -743,7 +757,7 @@ public class Ln : Operator
 		if (!inverse) 
 		{
 			return Mathf.Log(a.run());
-		} 
+		}
 		else 
 		{
 			return Mathf.Log(a.run());
