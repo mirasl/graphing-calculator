@@ -96,17 +96,19 @@ public class Graph : MeshInstance
 		st = new SurfaceTool();
 
 		st.Begin(Mesh.PrimitiveType.Lines);
-
-		for (int i = -precision; i < precision; i++)
+		if (!(e is Fail))
 		{
-			float x = (float)i / (float)precision * size.x;
-			for (int j = -precision; j < precision; j++)
+			for (int i = -precision; i < precision; i++)
 			{
-				float z = (float)j / (float)precision * size.y;
+				float x = (float)i / (float)precision * size.x;
+				for (int j = -precision; j < precision; j++)
+				{
+					float z = (float)j / (float)precision * size.y;
 
-				Graph.x = x;
-				Graph.y = z;
-				st.AddVertex(new Vector3(x, e.run(), z));
+					Graph.x = x;
+					Graph.y = z;
+					st.AddVertex(new Vector3(x, e.run(), z));
+				}
 			}
 		}
 
@@ -131,17 +133,19 @@ public class Graph : MeshInstance
 		ig.Clear();
 
 		ig.Begin(Mesh.PrimitiveType.Lines);
-
-		for (int i = -precision; i < precision; i++)
+		if (!(e is Fail))
 		{
-			float x = (float)i / (float)precision * size.x;
-			for (int j = -precision; j < precision; j++)
+			for (int i = -precision; i < precision; i++)
 			{
-				float z = (float)j / (float)precision * size.y;
+				float x = (float)i / (float)precision * size.x;
+				for (int j = -precision; j < precision; j++)
+				{
+					float z = (float)j / (float)precision * size.y;
 
-				Graph.x = x;
-				Graph.y = z;
-				ig.AddVertex(new Vector3(x, e.run(), z));
+					Graph.x = x;
+					Graph.y = z;
+					ig.AddVertex(new Vector3(x, e.run(), z));
+				}
 			}
 		}
 
@@ -157,6 +161,10 @@ public class Graph : MeshInstance
 		Mesh = null;
 	}
 
+	/// <summary>
+	/// Converts a string of an expression into an Element tree.
+	/// </summary>
+	/// <param name="input">Input string to be converted</param>
 	public Element interpret(String input) 
 	{
 		List<String> strList = seperate(input);
@@ -303,6 +311,10 @@ public class Graph : MeshInstance
 		return tree;
 	}
 	
+	/// <summary>
+	/// Itemizes a String into numbers, operators, and variables.
+	/// </summary>
+	/// <param name="input">The string to be itemized</param>
 	public List<String> seperate(String input) 
 	{
 		input = Regex.Replace(input, @"\s+", "");
@@ -343,6 +355,10 @@ public class Graph : MeshInstance
 		return output;
 	}
 	
+	/// <summary>
+	/// Converts a flat list of Elements into an Element tree
+	/// </summary>
+	/// <param name="input">the List of Elements to be turned into a tree.</param>
 	public Element Pemdas(List<Element> input) 
 	{
 		for (int i = 0; i < input.Count; i++) 
@@ -370,9 +386,22 @@ public class Graph : MeshInstance
 							}
 						}
 					}
-					Element g = Pemdas(input.GetRange(i+1, j-i-2));
+					Element g;
+					int parenRange = j-i-2;
+					if (parenRange >= 1)
+					{
+						g = Pemdas(input.GetRange(i+1, parenRange));
+					}
+					else
+					{
+						g = new Fail();
+					}
 					castE.setX(g);
 					input.RemoveRange(i+1, j-i-1);
+				}
+				else
+				{
+					input[i] = new Fail();
 				}
 			}
 		}
@@ -381,12 +410,19 @@ public class Graph : MeshInstance
 			Element e = input[i];
 			if (e is Point) 
 			{
-				Operator castE = (Operator) e;
-				castE.setY(input[i+1]);
-				input.RemoveAt(i+1);
-				castE.setX(input[i-1]);
-				input.RemoveAt(i-1);
-				i--;
+				if (i-1>=0 && i+1 < input.Count)
+				{
+					Operator castE = (Operator) e;
+					castE.setY(input[i+1]);
+					input.RemoveAt(i+1);
+					castE.setX(input[i-1]);
+					input.RemoveAt(i-1);
+					i--;
+				}
+				else
+				{
+					input[i] = new Fail();
+				}
 			}
 		}
 		for (int i = 0; i < input.Count; i++) 
@@ -394,9 +430,16 @@ public class Graph : MeshInstance
 			Element e = input[i];
 			if (e is Sine || e is Cosine || e is Tangent || e is Ln) 
 			{
-				Operator castE = (Operator) e;
-				castE.setX(input[i+1]);
-				input.RemoveAt(i+1);
+				if (i+1 < input.Count)
+				{
+					Operator castE = (Operator) e;
+					castE.setX(input[i+1]);
+					input.RemoveAt(i+1);
+				}
+				else
+				{
+					input[i] = new Fail();
+				}
 			}
 		}
 		for (int i = 0; i < input.Count; i++) 
@@ -404,12 +447,19 @@ public class Graph : MeshInstance
 			Element e = input[i];
 			if (e is Exponent) 
 			{
-				Operator castE = (Operator) e;
-				castE.setY(input[i+1]);
-				input.RemoveAt(i+1);
-				castE.setX(input[i-1]);
-				input.RemoveAt(i-1);
-				i--;
+				if (i-1>=0 && i+1 < input.Count)
+				{
+					Operator castE = (Operator) e;
+					castE.setY(input[i+1]);
+					input.RemoveAt(i+1);
+					castE.setX(input[i-1]);
+					input.RemoveAt(i-1);
+					i--;
+				}
+				else
+				{
+					input[i] = new Fail();
+				}
 			}
 		}
 		for (int i = 0; i < input.Count; i++) 
@@ -417,12 +467,19 @@ public class Graph : MeshInstance
 			Element e = input[i];
 			if (e is Multiply) 
 			{
-				Operator castE = (Operator) e;
-				castE.setY(input[i+1]);
-				input.RemoveAt(i+1);
-				castE.setX(input[i-1]);
-				input.RemoveAt(i-1);
-				i--;
+				if (i-1>=0 && i+1 < input.Count)
+				{
+					Operator castE = (Operator) e;
+					castE.setY(input[i+1]);
+					input.RemoveAt(i+1);
+					castE.setX(input[i-1]);
+					input.RemoveAt(i-1);
+					i--;
+				}
+				else
+				{
+					input[i] = new Fail();
+				}
 			}
 		}
 		for (int i = 0; i < input.Count; i++) 
@@ -431,8 +488,15 @@ public class Graph : MeshInstance
 			if (e is Add) 
 			{
 				Operator castE = (Operator) e;
-				castE.setY(input[i+1]);
-				input.RemoveAt(i+1);
+				if (i+1 < input.Count)
+				{
+					castE.setY(input[i+1]);
+					input.RemoveAt(i+1);
+				}
+				else
+				{
+					input[i] = new Fail();
+				}
 				if (i-1>=0) 
 				{
 					if (input[i-1].full()) 
@@ -450,12 +514,16 @@ public class Graph : MeshInstance
 		}
 		if (input.Count > 1) 
 		{
+			return new Fail();
 			throw new Exception("PEMDAS failed, check for extra operators.");
 		}
 		return input[0];
 	}
 }
 
+/// <summary>
+/// The basic element class. parent class for values, variables, and operators.
+/// </summary>
 public abstract class Element 
 {
 	public String type;
@@ -469,6 +537,9 @@ public abstract class Element
 	abstract public float run();
 }
 
+/// <summary>
+/// An object that contains a value as part of an expression.
+/// </summary>
 public class Value : Element 
 {
 	public float a;
@@ -495,6 +566,9 @@ public class Value : Element
 	}
 }
 
+/// <summary>
+/// An object that contains the variable x as part of an expression. scales with the x axis.
+/// </summary>
 public class X : Element 
 {
 	public X() : base("x") 
@@ -513,6 +587,9 @@ public class X : Element
 	}
 }
 
+/// <summary>
+/// An object that contains the variable y as part of an expression. scales with the y axis.
+/// </summary>
 public class Y : Element 
 {
 	public Y() : base("y") 
@@ -531,6 +608,9 @@ public class Y : Element
 	}
 }
 
+/// <summary>
+/// An object that contains the variable t as part of an expression. scales with time.
+/// </summary>
 public class T : Element 
 {
 	public T() : base("t") 
@@ -549,6 +629,10 @@ public class T : Element
 	}
 }
 
+/// <summary>
+/// An object that acts as parenthesis. it first is used to surround the part of the expression
+/// it contains, and then later actually contains it in the tree.
+/// </summary>
 public class Paren : Operator 
 {
 	public Paren(String typeIn) : base(typeIn, false) 
@@ -567,6 +651,10 @@ public class Paren : Operator
 	}
 }
 
+/// <summary>
+/// This class is the parent element for all operators. it has an element b and element a, which
+/// are the two elements that are processed in it when it's run.
+/// </summary>
 abstract public class Operator : Element 
 {
 	public Element a;
@@ -595,6 +683,11 @@ abstract public class Operator : Element
 	}
 }
 
+/// <summary>
+/// a decimal point. it contains two elements, and running it returns a value as if the left
+/// element was the number to the left of the point and the right element was the right side.
+/// it also flips the sign of the right element to match the left.
+/// </summary>
 public class Point : Operator 
 {
 	public Point(bool inverseIn) : base("add", inverseIn) 
@@ -622,6 +715,9 @@ public class Point : Operator
 	}
 }
 
+/// <summary>
+/// This class contains two elements and adds them when run.
+/// </summary>
 public class Add : Operator 
 {
 	public Add(bool inverseIn) : base("add", inverseIn) 
@@ -643,6 +739,9 @@ public class Add : Operator
 	}
 }
 
+/// <summary>
+/// This class contains two elements and multiplies them when run.
+/// </summary>
 public class Multiply : Operator 
 {
 	public Multiply(bool inverseIn) : base("multiply", inverseIn) 
@@ -663,6 +762,9 @@ public class Multiply : Operator
 	}
 }
 
+/// <summary>
+/// This class contains two elements and raises the left element to the power of the right when run.
+/// </summary>
 public class Exponent : Operator 
 {
 	public Exponent(bool inverseIn) : base("exponent", inverseIn) 
@@ -683,6 +785,9 @@ public class Exponent : Operator
 	}
 }
 
+/// <summary>
+/// This class contains one element and running it returns the sine of that value.
+/// </summary>
 public class Sine : Operator 
 {
 	public Sine(bool inverseIn) : base("sine", inverseIn) 
@@ -704,6 +809,9 @@ public class Sine : Operator
 	}
 }
 
+/// <summary>
+/// This class contains one element and running it returns the cosine of that value.
+/// </summary>
 public class Cosine : Operator 
 {
 	public Cosine(bool inverseIn) : base("cosine", inverseIn) 
@@ -724,6 +832,9 @@ public class Cosine : Operator
 	}
 }
 
+/// <summary>
+/// This class contains one element and running it returns the tangent of that value.
+/// </summary>
 public class Tangent : Operator 
 {
 	public Tangent(bool inverseIn) : base("tangent", inverseIn) 
@@ -745,6 +856,9 @@ public class Tangent : Operator
 	}
 }
 
+/// <summary>
+/// This class contains one element and running it returns the natural log of that value.
+/// </summary>
 public class Ln : Operator 
 {
 	public Ln(bool inverseIn) : base("ln", inverseIn) 
@@ -762,5 +876,28 @@ public class Ln : Operator
 		{
 			return Mathf.Log(a.run());
 		}
+	}
+}
+
+/// <summary>
+/// This class is used whenever an operator tries to get an element from out of bounds. running it
+/// returns NaN
+/// </summary>
+public class Fail : Element
+{
+	public Fail() : base("value") 
+	{
+		//Empty
+	}
+	
+	override public float run() 
+	{
+		float zero = 0;
+		return 1/zero;
+	}
+	
+	override public bool full() 
+	{
+		return true;
 	}
 }
