@@ -410,7 +410,7 @@ public class Graph : MeshInstance
 			Element e = input[i];
 			if (e is Point) 
 			{
-				if (i-1>=0 && i+1 < input.Count)
+				if (i-1>=0 && i+1 < input.Count && input[i+1].full())
 				{
 					Operator castE = (Operator) e;
 					castE.setY(input[i+1]);
@@ -430,7 +430,7 @@ public class Graph : MeshInstance
 			Element e = input[i];
 			if (e is Sine || e is Cosine || e is Tangent || e is Ln) 
 			{
-				if (i+1 < input.Count)
+				if (i+1 < input.Count && input[i+1].full())
 				{
 					Operator castE = (Operator) e;
 					castE.setX(input[i+1]);
@@ -447,7 +447,7 @@ public class Graph : MeshInstance
 			Element e = input[i];
 			if (e is Exponent) 
 			{
-				if (i-1>=0 && i+1 < input.Count)
+				if (i-1>=0 && i+1 < input.Count && input[i+1].full())
 				{
 					Operator castE = (Operator) e;
 					castE.setY(input[i+1]);
@@ -467,7 +467,7 @@ public class Graph : MeshInstance
 			Element e = input[i];
 			if (e is Multiply) 
 			{
-				if (i-1>=0 && i+1 < input.Count)
+				if (i-1>=0 && i+1 < input.Count && input[i+1].full())
 				{
 					Operator castE = (Operator) e;
 					castE.setY(input[i+1]);
@@ -488,7 +488,7 @@ public class Graph : MeshInstance
 			if (e is Add) 
 			{
 				Operator castE = (Operator) e;
-				if (i+1 < input.Count)
+				if (i+1 < input.Count && input[i+1].full())
 				{
 					castE.setY(input[i+1]);
 					input.RemoveAt(i+1);
@@ -512,7 +512,7 @@ public class Graph : MeshInstance
 				}
 			}
 		}
-		if (input.Count > 1) 
+		if (input.Count!=1) 
 		{
 			return new Fail();
 			throw new Exception("PEMDAS failed, check for extra operators.");
