@@ -12,6 +12,8 @@ using System.Text.RegularExpressions;
 /// </summary>
 public class Graph : MeshInstance
 {
+    [Signal] delegate void CreateErrorMessage();
+
 	/// <summary>
 	/// The current x value being iterated over.
 	/// </summary>
@@ -111,6 +113,10 @@ public class Graph : MeshInstance
 				}
 			}
 		}
+        else
+        {
+            EmitSignal("CreateErrorMessage");
+        }
 
 		Godot.ArrayMesh m = st.Commit();
 
@@ -148,6 +154,10 @@ public class Graph : MeshInstance
 				}
 			}
 		}
+        else
+        {
+            EmitSignal("CreateErrorMessage");
+        }
 
 		ig.End();
 	}
@@ -892,8 +902,7 @@ public class Fail : Element
 	
 	override public float run() 
 	{
-		float zero = 0;
-		return 1/zero;
+		return float.NaN;
 	}
 	
 	override public bool full() 

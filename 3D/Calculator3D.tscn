@@ -875,7 +875,6 @@ focus_mode = 1
 script = ExtResource( 4 )
 
 [node name="WindowDialog" type="WindowDialog" parent="UI"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1040,6 +1039,36 @@ margin_bottom = 148.0
 theme = ExtResource( 5 )
 text = "Guide"
 
+[node name="ErrorWindow" type="WindowDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -229.5
+margin_top = -126.0
+margin_right = 229.5
+margin_bottom = 126.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ErrorWindow"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_right = -10.0
+
+[node name="Label" type="Label" parent="ErrorWindow/MarginContainer"]
+margin_top = 57.0
+margin_right = 439.0
+margin_bottom = 194.0
+theme = ExtResource( 5 )
+text = "ERROR! Invalid syntax
+
+Press \"Guide\" button for detailed syntax instructions"
+align = 1
+valign = 1
+autowrap = true
+
+[connection signal="CreateErrorMessage" from="Graph" to="." method="sig_CreateErrorMessage"]
 [connection signal="Graph" from="UI" to="." method="sig_Graph"]
 [connection signal="SetLineEditFocus" from="UI" to="." method="sig_SetLineEditFocus"]
 [connection signal="pressed" from="UI/Graph" to="UI" method="sig_GraphButtonPressed"]

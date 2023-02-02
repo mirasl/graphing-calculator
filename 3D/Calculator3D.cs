@@ -83,4 +83,9 @@ public class Calculator3D : Spatial
 			g.DrawAnimatedGraph(new Vector2(size, size), precisionPercent);
 		}
 	}
+
+    public void sig_CreateErrorMessage()
+    {
+        GetNode<WindowDialog>("ErrorWindow").Popup_();
+    }
 }
