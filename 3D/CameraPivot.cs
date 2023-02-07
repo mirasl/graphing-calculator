@@ -1,28 +1,59 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Handles input which allows the user to move the camera
+/// </summary>
 public class CameraPivot : Spatial
 {
-    private const float ROTATION_SPEED = 0.02f; // radians per frame
-    private const float TRANSLATION_SPEED = 0.07f; // meters per frame
-    private const float ZOOM_FACTOR = 0.8f; // multiplied by current zoom
+    /// <summary>
+    /// Camera rotation speed in radians per frame.
+    /// </summary>
+    private const float ROTATION_SPEED = 0.02f;
 
-    public override void _PhysicsProcess(float delta)
+    /// <summary>
+    /// Camera translation speed in meters per frame.
+    /// </summary>
+    private const float TRANSLATION_SPEED = 0.07f;
+
+    /// <summary>
+    /// When zoom key pressed, this value (or its inverse) is multiplied by
+    /// the current zoom value to zoom the camera in or out. Scale from 0 to
+    /// 1; lower values result in larger zoom intervals.
+    /// </summary>
+    private const float ZOOM_FACTOR = 0.8f;
+
+    /// <summary>
+    /// If true, camera does not accept input and is "locked" (cannot move).
+    /// </summary>
+    public bool Disabled = false;
+
+    /// <summary>
+    /// Runs through camera controls each frame to account for user input.
+    /// </summary>
+    /// <param name="delta">Time (s) between frames</param>
+    public override void _Process(float delta)
     {
-        if (Input.IsActionPressed("shift"))
+        if (!Disabled)
         {
-            Pan();
-        }
-        else
-        {
-            Orbit();
-        }
-        if (Input.IsActionPressed("ctrl"))
-        {
-            Zoom();
+            if (Input.IsActionPressed("shift"))
+            {
+                Pan();
+            }
+            else
+            {
+                Orbit();
+            }
+            if (Input.IsActionPressed("ctrl"))
+            {
+                Zoom();
+            }
         }
     }
 
+    /// <summary>
+    /// Handles input which causes the camera to orbit around a point.
+    /// </summary>
     private void Orbit()
     {
         if (Input.IsActionPressed("ui_left"))
@@ -45,6 +76,10 @@ public class CameraPivot : Spatial
         }
     }
 
+    /// <summary>
+    /// Handles input which causes the camera to translate in all six 3D
+    /// directions.
+    /// </summary>
     private void Pan()
     {
         if (Input.IsActionPressed("ctrl"))
@@ -85,6 +120,10 @@ public class CameraPivot : Spatial
         }
     }
 
+    /// <summary>
+    /// Handles input which causes the camera to zoom in and out by moving the
+    /// camera closer to or further from a point.
+    /// </summary>
     private void Zoom()
     {
         if (Input.IsActionJustPressed("equal"))
