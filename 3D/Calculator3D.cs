@@ -84,8 +84,8 @@ public class Calculator3D : Spatial
 		}
 	}
 
-    public void sig_CreateErrorMessage()
-    {
-        GetNode<WindowDialog>("ErrorWindow").Popup_();
-    }
+	public void sig_CreateErrorMessage()
+	{
+		GetNode<WindowDialog>("ErrorWindow").Popup_();
+	}
 }

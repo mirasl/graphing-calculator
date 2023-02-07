@@ -47,14 +47,14 @@ public class UI : Control
 		"(x^2+y^2)^(-1/2) * sin(t)",
 		"ln(x-sint)*ln(y+sint)",
 		"tant+sinx+siny",
-        "1/cos(x/3) - 1/cos(y/3)",
-        "1/sin(x/3) + 1/sin(y/3)",
-        "1/cos(x*sin(t/3)/3) + 1/cos(y*sin(t/3)/3)",
-        "sin(cos(sin(cos(x+t) - y) - x) - t) *cos(t)",
-        "(sin(x+t) - cos(y+t)) / (cos(t)/sin(t))",
-        "sin(cos(x + t) + (y + t)/2) / (sin(cos(x + t) + (y + t)/2) - (sin(cos(x + t) + (y + t)/2)^2)^(1/2))",
-        "(((0.5)^2-(5-(x^2+y^2)^(1/2))^2)^(1/2) + x + 1/((x+3.5)^2)) / ((((0.5)^2-(5-(x^2+y^2)^(1/2))^2)^(1/2) + x + 1/((x+3.5)^2)) + ((((0.5)^2-(5-(x^2+y^2)^(1/2))^2)^(1/2) + x + 1/((x+3.5)^2))^0.5)^2)", // ridiculously complicated smiley face :)
-        "(1/sin(x) - 1/sin(y)) / ((1/sin(x) - 1/sin(y)) + ((1/sin(x) - 1/sin(y))^2)^0.5)"
+		"1/cos(x/3) - 1/cos(y/3)",
+		"1/sin(x/3) + 1/sin(y/3)",
+		"1/cos(x*sin(t/3)/3) + 1/cos(y*sin(t/3)/3)",
+		"sin(cos(sin(cos(x+t) - y) - x) - t) *cos(t)",
+		"(sin(x+t) - cos(y+t)) / (cos(t)/sin(t))",
+		"sin(cos(x + t) + (y + t)/2) / (sin(cos(x + t) + (y + t)/2) - (sin(cos(x + t) + (y + t)/2)^2)^(1/2))",
+		"(((0.5)^2-(5-(x^2+y^2)^(1/2))^2)^(1/2) + x + 1/((x+3.5)^2)) / ((((0.5)^2-(5-(x^2+y^2)^(1/2))^2)^(1/2) + x + 1/((x+3.5)^2)) + ((((0.5)^2-(5-(x^2+y^2)^(1/2))^2)^(1/2) + x + 1/((x+3.5)^2))^0.5)^2)", // ridiculously complicated smiley face :)
+		"(1/sin(x) - 1/sin(y)) / ((1/sin(x) - 1/sin(y)) + ((1/sin(x) - 1/sin(y))^2)^0.5)"
 	};
 
 	/// <summary>

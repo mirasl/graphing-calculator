@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 /// </summary>
 public class Graph : MeshInstance
 {
-    [Signal] delegate void CreateErrorMessage();
+	[Signal] delegate void CreateErrorMessage();
 
 	/// <summary>
 	/// The current x value being iterated over.
@@ -113,10 +113,10 @@ public class Graph : MeshInstance
 				}
 			}
 		}
-        else
-        {
-            EmitSignal("CreateErrorMessage");
-        }
+		else
+		{
+			EmitSignal("CreateErrorMessage");
+		}
 
 		Godot.ArrayMesh m = st.Commit();
 
@@ -154,10 +154,10 @@ public class Graph : MeshInstance
 				}
 			}
 		}
-        else
-        {
-            EmitSignal("CreateErrorMessage");
-        }
+		else
+		{
+			EmitSignal("CreateErrorMessage");
+		}
 
 		ig.End();
 	}
@@ -227,7 +227,7 @@ public class Graph : MeshInstance
 			{
 				flatElements.Add(new Paren("close"));
 			}
-			else if (s.Equals("s")) 
+			else if (s.Equals("s") && strList.Count >= i+3) 
 			{
 				i++;
 				if (strList[i].Equals("i")) 
@@ -247,7 +247,7 @@ public class Graph : MeshInstance
 					i--;
 				}
 			}
-			else if (s.Equals("c")) 
+			else if (s.Equals("c") && strList.Count >= i+3) 
 			{
 				i++;
 				if (strList[i].Equals("o")) 
@@ -269,7 +269,7 @@ public class Graph : MeshInstance
 			}
 			else if (s.Equals("t"))
 			{
-				if (strList.Count < i+2)
+				if (strList.Count < i+3)
 				{
 					flatElements.Add(new T());
 				}
@@ -300,7 +300,7 @@ public class Graph : MeshInstance
 			{
 				flatElements.Add(new T());
 			}
-			else if (s.Equals("l"))
+			else if (s.Equals("l") && strList.Count >= i+2)
 			{
 				i++;
 				if (strList[i].Equals("n")) 
