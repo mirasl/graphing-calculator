@@ -58,6 +58,7 @@ public class Calculator3D : Spatial
 		}
 		else
 		{
+            animated = false;
 			g.DrawGraph(new Vector2(s, s), p);
 		}
 	}
