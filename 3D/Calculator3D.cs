@@ -86,6 +86,8 @@ public class Calculator3D : Spatial
 
 	public void sig_CreateErrorMessage()
 	{
+        g.ClearGraph();
         GetNode<WindowDialog>("ErrorWindow").Popup_();
+        g.e = g.interpret("0/0"); // clears graph and gets rid of continuous errors
 	}
 }
