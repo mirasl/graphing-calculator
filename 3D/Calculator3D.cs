@@ -30,6 +30,7 @@ public class Calculator3D : Spatial
 
 	public override void _Ready()
 	{
+        OS.WindowFullscreen = true;
 		g = GetNode<Graph>("Graph");
 	}
 
