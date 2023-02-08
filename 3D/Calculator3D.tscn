@@ -1,0 +1,1076 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://3D/CameraPivot.cs" type="Script" id=1]
+[ext_resource path="res://3D/Line3D.cs" type="Script" id=2]
+[ext_resource path="res://3D/Graph.cs" type="Script" id=3]
+[ext_resource path="res://3D/UI.cs" type="Script" id=4]
+[ext_resource path="res://RegularText.tres" type="Theme" id=5]
+[ext_resource path="res://3D/Calculator3D.cs" type="Script" id=6]
+[ext_resource path="res://3D/Gridlines.cs" type="Script" id=7]
+[ext_resource path="res://Assets/Inter-Regular.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="SpatialMaterial" id=8]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="DynamicFont" id=22]
+size = 80
+font_data = ExtResource( 8 )
+
+[sub_resource type="SpatialMaterial" id=10]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SpatialMaterial" id=11]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Environment" id=7]
+background_color = Color( 0.890196, 0.890196, 0.890196, 1 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=13]
+params_cull_mode = 2
+
+[sub_resource type="ArrayMesh" id=12]
+
+[sub_resource type="Theme" id=21]
+WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Theme" id=18]
+
+[sub_resource type="DynamicFont" id=14]
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=15]
+default_font = SubResource( 14 )
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.501961, 0.823529, 0.839216, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.376471, 0.835294, 0.439216, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.501961, 0.823529, 0.839216, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.956863, 0.611765, 0.462745, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Calculator3D" type="Spatial"]
+script = ExtResource( 6 )
+
+[node name="Gridlines" type="Spatial" parent="."]
+script = ExtResource( 7 )
+
+[node name="XAxis" type="ImmediateGeometry" parent="Gridlines"]
+material_override = SubResource( 8 )
+script = ExtResource( 2 )
+Vertex1 = Vector3( -200, 0, 0 )
+Vertex2 = Vector3( 200, 0, 0 )
+color = Color( 1, 0, 0, 1 )
+
+[node name="Numbers" type="Spatial" parent="Gridlines/XAxis"]
+
+[node name="1" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.987024, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "1"
+font = SubResource( 22 )
+
+[node name="2" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 1.97416, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "2"
+font = SubResource( 22 )
+
+[node name="3" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 3.01233, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "3"
+font = SubResource( 22 )
+
+[node name="4" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 4.03955, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "4"
+font = SubResource( 22 )
+
+[node name="5" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.08586, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "5"
+font = SubResource( 22 )
+
+[node name="6" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.9904, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "6"
+font = SubResource( 22 )
+
+[node name="7" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 6.95358, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "7"
+font = SubResource( 22 )
+
+[node name="8" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 7.99144, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "8"
+font = SubResource( 22 )
+
+[node name="9" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 9.01745, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "9"
+font = SubResource( 22 )
+
+[node name="10" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 10.0306, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "10"
+font = SubResource( 22 )
+
+[node name="11" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 11.069, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "11"
+font = SubResource( 22 )
+
+[node name="12" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 12.0439, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "12"
+font = SubResource( 22 )
+
+[node name="13" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 13.0046, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "13"
+font = SubResource( 22 )
+
+[node name="14" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 14.0822, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "14"
+font = SubResource( 22 )
+
+[node name="15" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 15.0041, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "15"
+font = SubResource( 22 )
+
+[node name="X" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.31665, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "x"
+font = SubResource( 22 )
+
+[node name="-15" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -14.9767, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-15"
+font = SubResource( 22 )
+
+[node name="-14" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -13.9896, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-14"
+font = SubResource( 22 )
+
+[node name="-13" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -12.9514, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-13"
+font = SubResource( 22 )
+
+[node name="-12" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -11.9242, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-12"
+font = SubResource( 22 )
+
+[node name="-11" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -10.8779, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-11"
+font = SubResource( 22 )
+
+[node name="-10" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.9733, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-10"
+font = SubResource( 22 )
+
+[node name="-9" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.01013, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-9"
+font = SubResource( 22 )
+
+[node name="-8" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -7.97226, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-8"
+font = SubResource( 22 )
+
+[node name="-7" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -6.94626, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-7"
+font = SubResource( 22 )
+
+[node name="-6" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -5.93309, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-6"
+font = SubResource( 22 )
+
+[node name="-5" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -4.89471, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-5"
+font = SubResource( 22 )
+
+[node name="-4" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -3.91984, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-4"
+font = SubResource( 22 )
+
+[node name="-3" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -2.95911, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-3"
+font = SubResource( 22 )
+
+[node name="-2" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -1.88152, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-2"
+font = SubResource( 22 )
+
+[node name="-1" type="Label3D" parent="Gridlines/XAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.959611, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 1, 0, 0, 1 )
+text = "-1"
+font = SubResource( 22 )
+
+[node name="ZAxis" type="ImmediateGeometry" parent="Gridlines"]
+material_override = SubResource( 10 )
+script = ExtResource( 2 )
+Vertex1 = Vector3( 0, -200, 0 )
+Vertex2 = Vector3( 0, 200, 0 )
+color = Color( 0.54902, 0.960784, 0.266667, 1 )
+
+[node name="Numbers" type="Spatial" parent="Gridlines/ZAxis"]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="1" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.987024, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "1"
+font = SubResource( 22 )
+
+[node name="z" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.375818, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "z"
+font = SubResource( 22 )
+
+[node name="2" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 1.97416, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "2"
+font = SubResource( 22 )
+
+[node name="3" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 3.01233, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "3"
+font = SubResource( 22 )
+
+[node name="4" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 4.03955, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "4"
+font = SubResource( 22 )
+
+[node name="5" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.08586, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "5"
+font = SubResource( 22 )
+
+[node name="6" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.9904, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "6"
+font = SubResource( 22 )
+
+[node name="7" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 6.95358, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "7"
+font = SubResource( 22 )
+
+[node name="8" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 7.99144, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "8"
+font = SubResource( 22 )
+
+[node name="9" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 9.01745, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "9"
+font = SubResource( 22 )
+
+[node name="10" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 10.0306, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "10"
+font = SubResource( 22 )
+
+[node name="11" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 11.069, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "11"
+font = SubResource( 22 )
+
+[node name="12" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 12.0439, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "12"
+font = SubResource( 22 )
+
+[node name="13" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 13.0046, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "13"
+font = SubResource( 22 )
+
+[node name="14" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 14.0822, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "14"
+font = SubResource( 22 )
+
+[node name="15" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 15.0041, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "15"
+font = SubResource( 22 )
+
+[node name="-15" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -14.9767, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-15"
+font = SubResource( 22 )
+
+[node name="-14" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -13.9896, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-14"
+font = SubResource( 22 )
+
+[node name="-13" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -12.9514, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-13"
+font = SubResource( 22 )
+
+[node name="-12" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -11.9242, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-12"
+font = SubResource( 22 )
+
+[node name="-11" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -10.8779, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-11"
+font = SubResource( 22 )
+
+[node name="-10" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.9733, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-10"
+font = SubResource( 22 )
+
+[node name="-9" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.01013, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-9"
+font = SubResource( 22 )
+
+[node name="-8" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -7.97226, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-8"
+font = SubResource( 22 )
+
+[node name="-7" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -6.94626, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-7"
+font = SubResource( 22 )
+
+[node name="-6" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -5.93309, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-6"
+font = SubResource( 22 )
+
+[node name="-5" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -4.89471, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-5"
+font = SubResource( 22 )
+
+[node name="-4" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -3.91984, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-4"
+font = SubResource( 22 )
+
+[node name="-3" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -2.95911, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-3"
+font = SubResource( 22 )
+
+[node name="-2" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -1.88152, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-2"
+font = SubResource( 22 )
+
+[node name="-1" type="Label3D" parent="Gridlines/ZAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.959611, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.54902, 0.960784, 0.266667, 1 )
+text = "-1"
+font = SubResource( 22 )
+
+[node name="YAxis" type="ImmediateGeometry" parent="Gridlines"]
+material_override = SubResource( 11 )
+script = ExtResource( 2 )
+Vertex1 = Vector3( 0, 0, -200 )
+Vertex2 = Vector3( 0, 0, 200 )
+color = Color( 0.454902, 0.733333, 0.917647, 1 )
+
+[node name="Numbers" type="Spatial" parent="Gridlines/YAxis"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="1" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.987024, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "1"
+font = SubResource( 22 )
+
+[node name="y" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.197955, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "y
+"
+font = SubResource( 22 )
+
+[node name="2" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 1.97416, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "2"
+font = SubResource( 22 )
+
+[node name="3" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 3.01233, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "3"
+font = SubResource( 22 )
+
+[node name="4" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 4.03955, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "4"
+font = SubResource( 22 )
+
+[node name="5" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.08586, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "5"
+font = SubResource( 22 )
+
+[node name="6" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 5.9904, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "6"
+font = SubResource( 22 )
+
+[node name="7" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 6.95358, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "7"
+font = SubResource( 22 )
+
+[node name="8" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 7.99144, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "8"
+font = SubResource( 22 )
+
+[node name="9" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 9.01745, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "9"
+font = SubResource( 22 )
+
+[node name="10" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 10.0306, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "10"
+font = SubResource( 22 )
+
+[node name="11" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 11.069, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "11"
+font = SubResource( 22 )
+
+[node name="12" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 12.0439, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "12"
+font = SubResource( 22 )
+
+[node name="13" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 13.0046, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "13"
+font = SubResource( 22 )
+
+[node name="14" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 14.0822, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "14"
+font = SubResource( 22 )
+
+[node name="15" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 15.0041, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "15"
+font = SubResource( 22 )
+
+[node name="-15" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -14.9767, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-15"
+font = SubResource( 22 )
+
+[node name="-14" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -13.9896, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-14"
+font = SubResource( 22 )
+
+[node name="-13" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -12.9514, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-13"
+font = SubResource( 22 )
+
+[node name="-12" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -11.9242, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-12"
+font = SubResource( 22 )
+
+[node name="-11" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -10.8779, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-11"
+font = SubResource( 22 )
+
+[node name="-10" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.9733, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-10"
+font = SubResource( 22 )
+
+[node name="-9" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -9.01013, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-9"
+font = SubResource( 22 )
+
+[node name="-8" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -7.97226, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-8"
+font = SubResource( 22 )
+
+[node name="-7" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -6.94626, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-7"
+font = SubResource( 22 )
+
+[node name="-6" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -5.93309, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-6"
+font = SubResource( 22 )
+
+[node name="-5" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -4.89471, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-5"
+font = SubResource( 22 )
+
+[node name="-4" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -3.91984, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-4"
+font = SubResource( 22 )
+
+[node name="-3" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -2.95911, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-3"
+font = SubResource( 22 )
+
+[node name="-2" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -1.88152, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-2"
+font = SubResource( 22 )
+
+[node name="-1" type="Label3D" parent="Gridlines/YAxis/Numbers"]
+transform = Transform( 0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.959611, 0.110051, -0.0118208 )
+billboard = 1
+fixed_size = true
+modulate = Color( 0.454902, 0.733333, 0.917647, 1 )
+text = "-1"
+font = SubResource( 22 )
+
+[node name="CameraPivot" type="Spatial" parent="."]
+transform = Transform( 0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 0, 0 )
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="CameraPivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 7 )
+
+[node name="Graph" type="MeshInstance" parent="."]
+material_override = SubResource( 13 )
+mesh = SubResource( 12 )
+script = ExtResource( 3 )
+
+[node name="ImmediateGeometry" type="ImmediateGeometry" parent="Graph"]
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 1
+script = ExtResource( 4 )
+
+[node name="WindowDialog" type="WindowDialog" parent="UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -673.5
+margin_top = -389.5
+margin_right = 673.5
+margin_bottom = 389.5
+theme = SubResource( 21 )
+window_title = "Guide/Documentation"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/WindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/WindowDialog/MarginContainer"]
+margin_right = 1327.0
+margin_bottom = 759.0
+theme = ExtResource( 5 )
+text = "*to get started quickly and see the graph in action, use the RANDOM button to generate a sample graph!
+
+CONTROLS:
+Arrow keys === Orbit camera
+Shift + arrow keys === Pan left, right, up, down
+Shift + ctrl + up/down arrow keys === Pan forwards and backwards
+
+EQUATION:
+Type an equation into the box to graph it. Your equation MUST follow a specific syntax:
+- use \"+\", \"-\", \"*\", and \"/\" for operators.
+- use \"sin\", \"cos\", and \"tan\" for trigonometric functions (csc, sec, and cot can be achieved by dividing 1 by sin, cos, and tan, respectively). You do not need parenthesis if the input is a single value, but use parenthesis for inputting expressions (i.e. \"sin(x + 1)\").
+- VARIABLES: This graphing application graphs expressions in terms of Z, with Z being the up/down axis. This is similar to a TI-8X's \"y=\" graph functionality. As of right now, you cannot manipulate the Z variable (i.e. Z^2 = x + y). 
+
+There are three variables at your disposal:
+	x: the value of the point on the x-axis
+	y: the value of the point on the y-axis
+	t: time, counted in seconds. This variable continuously increases forever (well, until the computer runs out of space), so to have an oscilating back-and-forth time value, use sin(t) or cos(t).
+
+PRECISION:
+When an equation is graphed, a mesh is laid down as a collection of points. The amount of points that can be graphed depends on your computer's processing power, and is controlled using the PRECISION slider.
+
+Higher precision = many points, may not function on slower hardware
+Lower precision = less points, easily runnable on slower hardware
+
+SIZE:
+The amount of space taken up by the graph is denoted by the SIZE variable. You should never need a size greater than 15 (any graph can be reduced in size by dividing x and y by a constant).
+"
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+anchor_bottom = 1.0
+margin_top = -3.0
+margin_right = 697.0
+margin_bottom = -958.0
+theme = SubResource( 18 )
+color = Color( 0.227451, 0.211765, 0.27451, 1 )
+
+[node name="Equation" type="LineEdit" parent="UI"]
+margin_left = 117.0
+margin_top = 11.0
+margin_right = 524.0
+margin_bottom = 53.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+placeholder_text = "[Enter Equation Here]"
+caret_blink = true
+caret_blink_speed = 0.4
+
+[node name="Label" type="Label" parent="UI"]
+margin_left = 12.0
+margin_top = 15.0
+margin_right = 176.0
+margin_bottom = 64.0
+theme = ExtResource( 5 )
+text = "z(x, y) = "
+
+[node name="HSlider" type="HSlider" parent="UI"]
+margin_left = 147.0
+margin_top = 70.0
+margin_right = 327.0
+margin_bottom = 113.0
+max_value = 1.0
+step = 0.01
+value = 0.75
+
+[node name="Label2" type="Label" parent="UI"]
+visible = false
+margin_left = -467.0
+margin_top = 198.0
+margin_right = 50.0
+margin_bottom = 264.0
+theme = SubResource( 15 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Higher precision may not work on less powerful computers. Graphs using t-variable will automatically use a slightly lower precision to account for increased processing requirements."
+autowrap = true
+
+[node name="Label4" type="Label" parent="UI"]
+visible = false
+margin_left = 16.0
+margin_top = 258.0
+margin_right = 531.0
+margin_bottom = 324.0
+theme = SubResource( 15 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Size is inversely proportional to precision. Greater size lowers concentration of points and spreads points out over a greater distance."
+autowrap = true
+
+[node name="Label3" type="Label" parent="UI"]
+margin_left = 18.0
+margin_top = 72.0
+margin_right = 134.0
+margin_bottom = 104.0
+theme = ExtResource( 5 )
+text = "Precision:"
+
+[node name="Label5" type="Label" parent="UI"]
+margin_left = 356.0
+margin_top = 72.0
+margin_right = 472.0
+margin_bottom = 104.0
+theme = ExtResource( 5 )
+text = "Size:"
+
+[node name="Size" type="LineEdit" parent="UI"]
+margin_left = 425.0
+margin_top = 67.0
+margin_right = 519.0
+margin_bottom = 109.0
+theme = ExtResource( 5 )
+placeholder_text = "15"
+
+[node name="Graph" type="Button" parent="UI"]
+margin_left = 535.0
+margin_top = 13.0
+margin_right = 682.0
+margin_bottom = 50.0
+focus_mode = 1
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_styles/hover = SubResource( 19 )
+custom_styles/normal = SubResource( 16 )
+text = "Graph!"
+
+[node name="Random" type="Button" parent="UI"]
+margin_left = 535.0
+margin_top = 69.0
+margin_right = 682.0
+margin_bottom = 107.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_styles/hover = SubResource( 20 )
+custom_styles/normal = SubResource( 17 )
+text = "Random"
+
+[node name="Guide" type="Button" parent="UI"]
+margin_left = 9.0
+margin_top = 128.0
+margin_right = 96.0
+margin_bottom = 148.0
+theme = ExtResource( 5 )
+text = "Guide"
+
+[node name="ErrorWindow" type="WindowDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -229.5
+margin_top = -126.0
+margin_right = 229.5
+margin_bottom = 126.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ErrorWindow"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_right = -10.0
+
+[node name="Label" type="Label" parent="ErrorWindow/MarginContainer"]
+margin_top = 57.0
+margin_right = 439.0
+margin_bottom = 194.0
+theme = ExtResource( 5 )
+text = "ERROR! Invalid syntax
+
+Press \"Guide\" button for detailed syntax instructions"
+align = 1
+valign = 1
+autowrap = true
+
+[connection signal="CreateErrorMessage" from="Graph" to="." method="sig_CreateErrorMessage"]
+[connection signal="Graph" from="UI" to="." method="sig_Graph"]
+[connection signal="SetLineEditFocus" from="UI" to="." method="sig_SetLineEditFocus"]
+[connection signal="pressed" from="UI/Graph" to="UI" method="sig_GraphButtonPressed"]
+[connection signal="pressed" from="UI/Random" to="UI" method="sig_RandomButtonPressed"]
+[connection signal="pressed" from="UI/Guide" to="UI" method="sig_GuideButtonPressed"]
