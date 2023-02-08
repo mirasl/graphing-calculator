@@ -90,8 +90,14 @@ public class UI : Control
 			size = "15";
 		}
 
+        string expression = GetNode<LineEdit>("Equation").Text;
+        if (String.IsNullOrWhiteSpace(expression))
+        {
+            expression = "0/0"; // AKA NaN
+        }
+
 		EmitSignal("Graph", 
-				GetNode<LineEdit>("Equation").Text,
+				expression,
 				float.Parse(size),
 				(float)GetNode<HSlider>("HSlider").Value);
 	}
