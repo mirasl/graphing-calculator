@@ -1,5 +1,11 @@
+
 # Introduction
 Our program is a 3D graphing calculator application. The calculator allows users to model three-dimensional mathematical equations as well as display changing graphs over time. It can be used for exploration or for visualizing data with more than two axes. For specific usage information, see the **usage** section below.
+
+# Screenshots
+![2023-09-14-20:43:58](https://github.com/mirasl/graphing-calculator/assets/109443521/8b50016d-666f-4456-ad40-a28037dc8042)
+![2023-09-14-20:44:37](https://github.com/mirasl/graphing-calculator/assets/109443521/15192bbd-943a-4a6d-a906-7dd4818faad9)
+![2023-09-14-20:45:52](https://github.com/mirasl/graphing-calculator/assets/109443521/b15892ab-766b-46c6-9866-abce0486d593)
 
 # Installation
 To install the program, navigate to the **releases** page (on the right of the github repository) and download the graphing_calculator.exe file of the latest release. Windows Defender may prompt a warning message - click "more info" and then "run anyways."
